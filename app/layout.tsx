@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components';
 import StyledComponentsRegistry from '@/lib/registry';
 import GlobalStyles from '@/styles/GlobalStyles';
 import { theme } from '@/styles/theme';
+import Nav from '@/components/nav/Nav';
 
 const zenMaru = Zen_Maru_Gothic({
   weight: ['700'],
@@ -55,6 +56,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
               Skip to main content
             </a>
             <div className="frame" aria-hidden="true" />
+            <Nav />
             {children}
           </ThemeProvider>
         </StyledComponentsRegistry>
