@@ -11,6 +11,8 @@ export const theme = {
     fuji: '#6E5868',
     matcha: '#6E7850',
     kincha: '#B98A40',
+    white: '#FFFFFF',
+    transparent: 'transparent',
   },
   fonts: {
     name: 'var(--font-zen-maru)',
@@ -41,7 +43,17 @@ export const theme = {
     md: '0 6px 22px rgba(42,37,33,0.07)',
     lg: '0 10px 30px rgba(42,37,33,0.12)',
   },
+  sizes: {
+    frame: '7px',
+    navOffset: '14px',
+    navMaxWidth: '1120px',
+    navToggle: '42px',
+    navDropdownOffset: '64px',
+    navDropdownRadius: '20px',
+    brandDot: '12px',
+  },
   border: '1.5px solid #2A2521',
+  borderTransparent: '1.5px solid transparent',
 } as const;
 
 export type Theme = typeof theme;
