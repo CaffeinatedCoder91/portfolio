@@ -45,6 +45,7 @@ const GlobalStyles = createGlobalStyle`
     color: var(--ink);
     background: var(--paper);
     line-height: 1.6;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
