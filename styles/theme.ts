@@ -1,0 +1,47 @@
+export const theme = {
+  colors: {
+    paper: '#F1ECE1',
+    paper2: '#FAF7F0',
+    ink: '#2A2521',
+    inkSoft: '#7A7166',
+    line: '#E2DACB',
+    ai: '#3C5366',
+    shu: '#B24A2E',
+    mizu: '#5B7A8C',
+    fuji: '#6E5868',
+    matcha: '#6E7850',
+    kincha: '#B98A40',
+  },
+  fonts: {
+    name: 'var(--font-zen-maru)',
+    display: 'var(--font-bricolage)',
+    body: 'var(--font-hanken)',
+    mono: 'var(--font-space-mono)',
+  },
+  space: {
+    1: '4px',
+    2: '8px',
+    3: '16px',
+    4: '24px',
+    5: '32px',
+    6: '48px',
+    7: '64px',
+    8: '96px',
+    9: '128px',
+  },
+  radius: {
+    sm: '8px',
+    md: '14px',
+    lg: '22px',
+    xl: '32px',
+    full: '9999px',
+  },
+  shadows: {
+    sm: '0 2px 10px rgba(42,37,33,0.06)',
+    md: '0 6px 22px rgba(42,37,33,0.07)',
+    lg: '0 10px 30px rgba(42,37,33,0.12)',
+  },
+  border: '1.5px solid #2A2521',
+} as const;
+
+export type Theme = typeof theme;
