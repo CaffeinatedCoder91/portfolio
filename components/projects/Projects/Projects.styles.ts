@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import type { TokenColor } from '@/lib/types';
 import { theme as defaultTheme, type Theme } from '@/styles/theme';
 
@@ -11,6 +11,18 @@ const hasTheme = (theme: ThemeInput): theme is Theme => {
 const getTheme = (theme: ThemeInput): Theme => {
   return hasTheme(theme) ? theme : defaultTheme;
 };
+
+const modalEntry = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(${defaultTheme.sizes.modalEntryOffset});
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 export const Section = styled.section`
   padding: ${({ theme }) => getTheme(theme).sizes.sectionPadding} 0;
@@ -243,4 +255,171 @@ export const FilterButton = styled.button<{ $active: boolean }>`
       color: ${$active ? t.colors.white : t.colors.ink};
     `;
   }}
+`;
+
+export const ModalBackdrop = styled.div<{ $isOpen: boolean }>`
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: ${({ theme }) => getTheme(theme).sizes.modalPadding};
+  background: ${({ theme }) => getTheme(theme).colors.modalBackdrop};
+  backdrop-filter: blur(${({ theme }) => getTheme(theme).sizes.modalBackdropBlur});
+  z-index: 100;
+  opacity: ${({ $isOpen }) => ($isOpen ? 1 : 0)};
+  pointer-events: ${({ $isOpen }) => ($isOpen ? 'auto' : 'none')};
+  transition: opacity 0.2s ease;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+`;
+
+export const ModalPanel = styled.div<{ $isOpen: boolean }>`
+  position: relative;
+  max-width: ${({ theme }) => getTheme(theme).sizes.modalMaxWidth};
+  width: 100%;
+  max-height: ${({ theme }) => getTheme(theme).sizes.modalMaxHeight};
+  background: ${({ theme }) => getTheme(theme).colors.paper2};
+  border: ${({ theme }) => getTheme(theme).border};
+  border-radius: ${({ theme }) => getTheme(theme).radius.xl};
+  box-shadow: ${({ theme }) => getTheme(theme).shadows.lg};
+  overflow: auto;
+  outline: none;
+  padding: 0;
+
+  animation: ${({ $isOpen }) =>
+    $isOpen
+      ? css`
+          ${modalEntry} 0.25s ease forwards
+        `
+      : 'none'};
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+`;
+
+export const ModalImageHeader = styled.div<{ $color: TokenColor; $hasImage: boolean }>`
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: ${({ theme }) => getTheme(theme).colors.paper};
+  border-radius: ${({ theme }) => getTheme(theme).radius.xl}
+    ${({ theme }) => getTheme(theme).radius.xl} 0 0;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: ${({ $hasImage }) => ($hasImage ? 'none' : 'block')};
+    position: absolute;
+    inset: 0;
+    background: ${({ $color, theme }) => getTheme(theme).colors[$color]};
+    opacity: 0.1;
+  }
+
+  span {
+    position: relative;
+    z-index: 1;
+    font-family: ${({ theme }) => getTheme(theme).fonts.mono};
+    font-weight: 700;
+    font-size: ${({ theme }) => getTheme(theme).sizes.modalImageLabelFont};
+    color: ${({ $color, theme }) => getTheme(theme).colors[$color]};
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+`;
+
+export const ModalCloseButton = styled.button`
+  position: absolute;
+  top: ${({ theme }) => getTheme(theme).space[3]};
+  right: ${({ theme }) => getTheme(theme).space[3]};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: ${({ theme }) => getTheme(theme).sizes.modalCloseSize};
+  height: ${({ theme }) => getTheme(theme).sizes.modalCloseSize};
+  border-radius: ${({ theme }) => getTheme(theme).radius.full};
+  border: ${({ theme }) => getTheme(theme).border};
+  background: ${({ theme }) => getTheme(theme).colors.paper};
+  color: ${({ theme }) => getTheme(theme).colors.ink};
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 101;
+`;
+
+export const ModalContent = styled.div`
+  padding: ${({ theme }) => getTheme(theme).space[5]};
+`;
+
+export const ModalCategoryTag = styled.span<{ $color: TokenColor }>`
+  display: inline-block;
+  font-family: ${({ theme }) => getTheme(theme).fonts.mono};
+  font-weight: 700;
+  font-size: ${({ theme }) => getTheme(theme).sizes.projectCategoryFont};
+  color: ${({ theme }) => getTheme(theme).colors.white};
+  background: ${({ $color, theme }) => getTheme(theme).colors[$color]};
+  border: ${({ theme }) => getTheme(theme).border};
+  border-radius: ${({ theme }) => getTheme(theme).sizes.projectCategoryRadius};
+  padding: ${({ theme }) => getTheme(theme).sizes.projectCategoryPadding};
+  margin-bottom: ${({ theme }) => getTheme(theme).sizes.projectCategoryMarginBottom};
+`;
+
+export const ModalTitle = styled.h3`
+  font-family: ${({ theme }) => getTheme(theme).fonts.display};
+  font-weight: 800;
+  font-size: 1.8rem;
+  line-height: 1.05;
+  max-width: ${({ theme }) => getTheme(theme).sizes.modalTitleMaxWidth};
+  margin: 0 0 ${({ theme }) => getTheme(theme).space[3]};
+  color: ${({ theme }) => getTheme(theme).colors.ink};
+`;
+
+export const ModalBulletList = styled.ul<{ $color: TokenColor }>`
+  list-style: none;
+  padding: 0;
+  margin: 0 0 ${({ theme }) => getTheme(theme).space[4]};
+
+  li {
+    position: relative;
+    color: ${({ theme }) => getTheme(theme).colors.inkSoft};
+    line-height: 1.6;
+    padding-left: ${({ theme }) => getTheme(theme).sizes.timelineBulletPaddingLeft};
+    margin-bottom: ${({ theme }) => getTheme(theme).sizes.timelineBulletMarginBottom};
+
+    &::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: ${({ $color, theme }) => getTheme(theme).colors[$color]};
+      font-weight: 700;
+    }
+  }
+`;
+
+export const ModalChips = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => getTheme(theme).sizes.projectTagGap};
+  margin-bottom: ${({ theme }) => getTheme(theme).space[4]};
+`;
+
+export const ModalLinks = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: ${({ theme }) => getTheme(theme).sizes.projectFooterGap};
 `;

@@ -1,7 +1,7 @@
 'use client';
 
 // Client component: card opens on click/keyboard and links stop propagation.
-import React from 'react';
+import React, { forwardRef } from 'react';
 import Image from 'next/image';
 import Tag from '@/components/ui/Tag';
 import type { Project, TokenColor } from '@/lib/types';
@@ -28,7 +28,8 @@ interface Props {
   priority?: boolean;
 }
 
-const ProjectCard = ({ project, color, index, onOpen, priority = false }: Props) => {
+const ProjectCard = forwardRef<HTMLElement, Props>(
+  ({ project, color, index, onOpen, priority = false }: Props, ref) => {
   const handleClick = () => {
     onOpen(index);
   };
@@ -48,6 +49,7 @@ const ProjectCard = ({ project, color, index, onOpen, priority = false }: Props)
 
   return (
     <CardArticle
+      ref={ref}
       $color={color}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
@@ -114,6 +116,9 @@ const ProjectCard = ({ project, color, index, onOpen, priority = false }: Props)
       </CardFooter>
     </CardArticle>
   );
-};
+  },
+);
+
+ProjectCard.displayName = 'ProjectCard';
 
 export default ProjectCard;
