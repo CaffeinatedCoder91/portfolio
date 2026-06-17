@@ -14,6 +14,7 @@ export const theme = {
     white: '#FFFFFF',
     transparent: 'transparent',
     shuHighlight: 'rgba(178,74,46,0.16)',
+    modalBackdrop: 'rgba(27,21,48,0.55)',
   },
   fonts: {
     name: 'var(--font-zen-maru)',
@@ -126,6 +127,14 @@ export const theme = {
     projectLinkRadius: '10px',
     projectStatusFont: '0.74rem',
     projectStatusPadding: '0.4rem 0.8rem',
+    modalMaxWidth: '640px',
+    modalMaxHeight: '88vh',
+    modalPadding: '1.2rem',
+    modalEntryOffset: '14px',
+    modalCloseSize: '40px',
+    modalBackdropBlur: '3px',
+    modalTitleMaxWidth: '18ch',
+    modalImageLabelFont: '0.9rem',
   },
   ink: {
     palette: ['#4C2D82', '#34308A', '#5C3CA0', '#3C2882'],

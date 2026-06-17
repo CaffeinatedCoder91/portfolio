@@ -1,9 +1,10 @@
 'use client';
 
-// Client component: owns project filtering state before the modal session is added.
-import React, { useState, useCallback } from 'react';
+// Client component: owns filtering, modal state, and focus restoration.
+import React, { useState, useCallback, useRef } from 'react';
 import type { Project } from '@/lib/types';
 import ProjectCard from '../ProjectCard/ProjectCard';
+import ProjectModal from '../ProjectModal/ProjectModal';
 import FilterTabs from './FilterTabs';
 import { Grid } from './Projects.styles';
 
@@ -15,10 +16,17 @@ interface Props {
 
 const ProjectGrid = ({ projects }: Props) => {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const triggerRefs = useRef<(HTMLElement | null)[]>([]);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
   const handleOpenProject = useCallback((index: number) => {
-    // TODO: Open modal in Session 9
-    console.log('Opening project:', index);
+    triggerRef.current = triggerRefs.current[index] ?? null;
+    setSelectedIndex(index);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedIndex(null);
   }, []);
 
   const filteredProjects =
@@ -38,6 +46,9 @@ const ProjectGrid = ({ projects }: Props) => {
           return (
             <ProjectCard
               key={`${project.title}-${originalIndex}`}
+              ref={(el) => {
+                triggerRefs.current[originalIndex] = el;
+              }}
               project={project}
               color={color}
               index={originalIndex}
@@ -47,7 +58,12 @@ const ProjectGrid = ({ projects }: Props) => {
           );
         })}
       </Grid>
-      {/* Render null for modal for now (Session 9) */}
+      <ProjectModal
+        project={selectedIndex !== null ? projects[selectedIndex] : null}
+        color={selectedIndex !== null ? palette[selectedIndex % palette.length] : 'ai'}
+        onClose={handleCloseModal}
+        triggerRef={triggerRef}
+      />
     </>
   );
 };

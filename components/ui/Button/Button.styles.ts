@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components';
+import type { TokenColor } from '@/lib/types';
 import { theme as defaultTheme, type Theme } from '../../../styles/theme';
 
 type ButtonVariant = 'primary' | 'ghost' | 'cv';
+type ButtonStyleProps = {
+  $variant?: ButtonVariant;
+  $color?: TokenColor;
+};
 type ThemeInput = Partial<Theme> | undefined;
 
 const hasTheme = (theme: ThemeInput): theme is Theme => {
@@ -12,13 +17,13 @@ const getTheme = (theme: ThemeInput): Theme => {
   return hasTheme(theme) ? theme : defaultTheme;
 };
 
-const variantStyles = css<{ $variant?: ButtonVariant }>`
-  background: ${({ $variant, theme }) => {
+const variantStyles = css<ButtonStyleProps>`
+  background: ${({ $variant, $color, theme }) => {
     const currentTheme = getTheme(theme);
 
     switch ($variant) {
       case 'primary':
-        return currentTheme.colors.ai;
+        return currentTheme.colors[$color ?? 'ai'];
       case 'cv':
         return currentTheme.colors.paper;
       default:
@@ -44,7 +49,7 @@ const variantStyles = css<{ $variant?: ButtonVariant }>`
     `}
 `;
 
-const buttonBase = css<{ $variant?: ButtonVariant }>`
+const buttonBase = css<ButtonStyleProps>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -76,10 +81,10 @@ const buttonBase = css<{ $variant?: ButtonVariant }>`
   }
 `;
 
-export const StyledButton = styled.button<{ $variant?: ButtonVariant }>`
+export const StyledButton = styled.button<ButtonStyleProps>`
   ${buttonBase}
 `;
 
-export const StyledLink = styled.a<{ $variant?: ButtonVariant }>`
+export const StyledLink = styled.a<ButtonStyleProps>`
   ${buttonBase}
 `;
