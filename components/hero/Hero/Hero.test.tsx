@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { axe } from 'jest-axe';
 import '@testing-library/jest-dom';
 import Hero from './Hero';
+import { location, name } from '@/content/data';
 import { theme } from '../../../styles/theme';
 
 const renderWithTheme = (component: React.ReactElement) => {
@@ -20,12 +21,12 @@ describe('Hero', () => {
     const { container } = renderWithTheme(<Hero />);
     const heading = container.querySelector('h1');
     expect(heading).toBeInTheDocument();
-    expect(heading?.textContent).toBe('Joanna Joseph');
+    expect(heading?.textContent).toBe(name);
   });
 
   it('renders the location text', () => {
     const { getByText } = renderWithTheme(<Hero />);
-    expect(getByText(/London, UK/)).toBeInTheDocument();
+    expect(getByText(new RegExp(location))).toBeInTheDocument();
   });
 
   it('renders the three CTA links', () => {
@@ -37,7 +38,7 @@ describe('Hero', () => {
 
   it('renders the photo image', () => {
     const { getByAltText } = renderWithTheme(<Hero />);
-    const photo = getByAltText('Joanna Joseph');
+    const photo = getByAltText(name);
     expect(photo).toBeInTheDocument();
   });
 

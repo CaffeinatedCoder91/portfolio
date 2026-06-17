@@ -5,21 +5,10 @@ import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import { ThemeProvider } from 'styled-components';
 import ProjectModal from './ProjectModal';
+import { projects } from '@/content/data';
 import { theme } from '@/styles/theme';
-import type { Project } from '@/lib/types';
 
-const mockProject: Project = {
-  title: 'Test Project',
-  category: 'AI',
-  blurb: 'Test blurb',
-  tags: ['React', 'TypeScript'],
-  points: [
-    'First point about the project',
-    'Second point about the project',
-  ],
-  live: 'https://example.com',
-  code: 'https://github.com/example/project',
-};
+const projectWithLinks = projects.find((project) => project.live && project.code) ?? projects[0];
 
 const renderWithTheme = (component: React.ReactElement) => {
   return render(
@@ -53,57 +42,59 @@ describe('ProjectModal', () => {
   it('renders project title', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
     );
 
-    expect(screen.getByText('Test Project')).toBeInTheDocument();
+    expect(screen.getByText(projectWithLinks.title)).toBeInTheDocument();
   });
 
   it('renders category tag', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
     );
 
-    expect(screen.getAllByText('AI')).toHaveLength(2);
+    expect(screen.getAllByText(projectWithLinks.category)).toHaveLength(2);
   });
 
   it('renders bullet points', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
     );
 
-    expect(screen.getByText('First point about the project')).toBeInTheDocument();
-    expect(screen.getByText('Second point about the project')).toBeInTheDocument();
+    projectWithLinks.points.forEach((point) => {
+      expect(screen.getByText(point)).toBeInTheDocument();
+    });
   });
 
   it('renders tech tags', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
     );
 
-    expect(screen.getByText('React')).toBeInTheDocument();
-    expect(screen.getByText('TypeScript')).toBeInTheDocument();
+    projectWithLinks.tags.forEach((tag) => {
+      expect(screen.getByText(tag)).toBeInTheDocument();
+    });
   });
 
   it('renders action links', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -111,14 +102,14 @@ describe('ProjectModal', () => {
 
     const links = screen.getAllByRole('link');
     expect(links).toHaveLength(2);
-    expect(links[0]).toHaveAttribute('href', mockProject.live);
-    expect(links[1]).toHaveAttribute('href', mockProject.code);
+    expect(links[0]).toHaveAttribute('href', projectWithLinks.live);
+    expect(links[1]).toHaveAttribute('href', projectWithLinks.code);
   });
 
   it('calls onClose when close button is clicked', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -134,7 +125,7 @@ describe('ProjectModal', () => {
   it('calls onClose when Escape key is pressed', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -149,7 +140,7 @@ describe('ProjectModal', () => {
   it('calls onClose when backdrop is clicked', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -164,13 +155,13 @@ describe('ProjectModal', () => {
   it('does not close when panel content is clicked', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
     );
 
-    const title = screen.getByText('Test Project');
+    const title = screen.getByText(projectWithLinks.title);
     fireEvent.click(title);
 
     expect(mockOnClose).not.toHaveBeenCalled();
@@ -179,7 +170,7 @@ describe('ProjectModal', () => {
   it('hides body overflow when open', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -191,7 +182,7 @@ describe('ProjectModal', () => {
   it('restores body overflow when closed', () => {
     const { rerender } = renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -215,7 +206,7 @@ describe('ProjectModal', () => {
   it('focuses close button on open', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -227,7 +218,7 @@ describe('ProjectModal', () => {
   it('has correct accessibility attributes', () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -241,7 +232,7 @@ describe('ProjectModal', () => {
   it('has no accessibility violations', async () => {
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -255,7 +246,7 @@ describe('ProjectModal', () => {
     const user = userEvent.setup();
     renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -288,7 +279,7 @@ describe('ProjectModal', () => {
 
     const { rerender } = renderWithTheme(
       <ProjectModal
-        project={mockProject}
+        project={projectWithLinks}
         onClose={mockOnClose}
         triggerRef={triggerRef}
       />,
