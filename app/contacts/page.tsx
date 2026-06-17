@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: 'Get in touch — email, phone, or connect on LinkedIn and GitHub.',
 };
 
-export default function ContactsPage() {
+const ContactsPage = () => {
   return <Contacts />;
-}
+};
+
+export default ContactsPage;
