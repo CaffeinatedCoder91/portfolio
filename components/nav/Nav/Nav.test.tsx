@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
 import '@testing-library/jest-dom';
 import { ThemeProvider } from 'styled-components';
+import { name } from '@/content/data';
 import { theme } from '../../../styles/theme';
 import NavInner from './NavInner';
 
@@ -24,13 +25,13 @@ describe('Nav', () => {
   });
 
   it('renders the supplied name', () => {
-    renderWithTheme(<NavInner name="Joanna Joseph" />);
+    renderWithTheme(<NavInner name={name} />);
 
-    expect(screen.getByText('Joanna Joseph')).toBeInTheDocument();
+    expect(screen.getByText(name)).toBeInTheDocument();
   });
 
   it('renders three navigation links', () => {
-    renderWithTheme(<NavInner name="Joanna Joseph" />);
+    renderWithTheme(<NavInner name={name} />);
 
     expect(screen.getByRole('link', { name: 'Home' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Projects' })).toBeInTheDocument();
@@ -38,7 +39,7 @@ describe('Nav', () => {
   });
 
   it('marks the current page link active', () => {
-    const { rerender } = renderWithTheme(<NavInner name="Joanna Joseph" />);
+    const { rerender } = renderWithTheme(<NavInner name={name} />);
 
     expect(screen.getByRole('link', { name: 'Home' })).toHaveAttribute(
       'aria-current',
@@ -52,7 +53,7 @@ describe('Nav', () => {
     mockUsePathname.mockReturnValue('/contacts');
     rerender(
       <ThemeProvider theme={theme}>
-        <NavInner name="Joanna Joseph" />
+        <NavInner name={name} />
       </ThemeProvider>,
     );
 
@@ -65,7 +66,7 @@ describe('Nav', () => {
 
   it('toggles the mobile menu button state', async () => {
     const user = userEvent.setup();
-    renderWithTheme(<NavInner name="Joanna Joseph" />);
+    renderWithTheme(<NavInner name={name} />);
     const toggle = screen.getByLabelText('Menu');
 
     expect(toggle).toHaveAttribute('aria-expanded', 'false');
@@ -83,7 +84,7 @@ describe('Nav', () => {
     const user = userEvent.setup();
     renderWithTheme(
       <>
-        <NavInner name="Joanna Joseph" />
+        <NavInner name={name} />
         <main>Page content</main>
       </>,
     );
@@ -99,7 +100,7 @@ describe('Nav', () => {
   });
 
   it('passes axe accessibility check', async () => {
-    const { container } = renderWithTheme(<NavInner name="Joanna Joseph" />);
+    const { container } = renderWithTheme(<NavInner name={name} />);
 
     expect(await axe(container)).toHaveNoViolations();
   });

@@ -5,6 +5,7 @@ import { axe } from 'jest-axe';
 import '@testing-library/jest-dom';
 import Contacts from './Contacts';
 import { ThemeProvider } from 'styled-components';
+import { contact } from '@/content/data';
 import { theme } from '@/styles/theme';
 
 const renderWithTheme = (component: React.ReactElement) =>
@@ -48,14 +49,12 @@ describe('Contacts', () => {
 
   it('renders contact section heading', () => {
     const { getByText } = renderWithTheme(<Contacts />);
-    expect(getByText("Let's build something")).toBeInTheDocument();
+    expect(getByText(contact.head)).toBeInTheDocument();
   });
 
   it('renders contact section subtitle', () => {
     const { getByText } = renderWithTheme(<Contacts />);
-    expect(
-      getByText("Got a role, a project, or just want to say hi? My inbox is open.")
-    ).toBeInTheDocument();
+    expect(getByText(contact.sub)).toBeInTheDocument();
   });
 
   it('renders all four contact cards', () => {
@@ -68,31 +67,39 @@ describe('Contacts', () => {
         link.getAttribute('href')?.includes('linkedin') ||
         link.getAttribute('href')?.includes('github')
     );
-    expect(contactLinks).toHaveLength(4);
+    expect(contactLinks).toHaveLength(contact.items.length);
   });
 
   it('renders email with mailto link', () => {
+    const email = contact.items.find((item) => item.kind === 'Email');
+    expect(email).toBeDefined();
     const { getByRole } = renderWithTheme(<Contacts />);
-    const emailLink = getByRole('link', { name: /joannamjosep@gmail.com/i });
-    expect(emailLink).toHaveAttribute('href', 'mailto:joannamjosep@gmail.com');
+    const emailLink = getByRole('link', { name: email?.value ?? contact.items[0].value });
+    expect(emailLink).toHaveAttribute('href', email?.href);
   });
 
   it('renders phone with tel link', () => {
+    const phone = contact.items.find((item) => item.kind === 'Phone');
+    expect(phone).toBeDefined();
     const { getByRole } = renderWithTheme(<Contacts />);
-    const phoneLink = getByRole('link', { name: /07388 039256/i });
-    expect(phoneLink).toHaveAttribute('href', 'tel:+447388039256');
+    const phoneLink = getByRole('link', { name: phone?.value ?? contact.items[0].value });
+    expect(phoneLink).toHaveAttribute('href', phone?.href);
   });
 
   it('renders linkedin with target blank', () => {
+    const linkedin = contact.items.find((item) => item.kind === 'LinkedIn');
+    expect(linkedin).toBeDefined();
     const { getByRole } = renderWithTheme(<Contacts />);
-    const linkedinLink = getByRole('link', { name: /joannamjoseph/i });
+    const linkedinLink = getByRole('link', { name: linkedin?.value ?? contact.items[0].value });
     expect(linkedinLink).toHaveAttribute('target', '_blank');
     expect(linkedinLink).toHaveAttribute('rel', 'noopener noreferrer');
   });
 
   it('renders github with target blank', () => {
+    const github = contact.items.find((item) => item.kind === 'GitHub');
+    expect(github).toBeDefined();
     const { getByRole } = renderWithTheme(<Contacts />);
-    const githubLink = getByRole('link', { name: /CaffeinatedCoder91/i });
+    const githubLink = getByRole('link', { name: github?.value ?? contact.items[0].value });
     expect(githubLink).toHaveAttribute('target', '_blank');
     expect(githubLink).toHaveAttribute('rel', 'noopener noreferrer');
   });

@@ -4,6 +4,7 @@ import { render } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import '@testing-library/jest-dom';
 import { ThemeProvider } from 'styled-components';
+import { skills } from '@/content/data';
 import { theme } from '../../../styles/theme';
 import SkillsMarquee from './SkillsMarquee';
 
@@ -13,12 +14,18 @@ const renderWithTheme = (component: React.ReactElement) => {
   );
 };
 
-const mockSkills = [
-  { label: 'React', style: 'hot' as const },
-  { label: 'TypeScript', style: 'hot' as const },
-  { label: 'Next.js', style: 'cool' as const },
-  { label: 'CSS', style: 'default' as const },
-];
+const hotSkills = ['React', 'TypeScript', 'Claude API'];
+const coolSkills = ['Next.js', 'Vitest', 'Vercel'];
+const skillItems = skills.flatMap((skillGroup) =>
+  skillGroup.items.map((item) => ({
+    label: item,
+    style: hotSkills.includes(item)
+      ? ('hot' as const)
+      : coolSkills.includes(item)
+        ? ('cool' as const)
+        : ('default' as const),
+  })),
+);
 
 describe('SkillsMarquee', () => {
   beforeEach(() => {
@@ -39,16 +46,16 @@ describe('SkillsMarquee', () => {
 
   it('renders chips with correct labels', () => {
     const { container } = renderWithTheme(
-      <SkillsMarquee skills={mockSkills} />
+      <SkillsMarquee skills={skillItems} />
     );
-    mockSkills.forEach((skill) => {
+    skillItems.forEach((skill) => {
       expect(container.textContent).toContain(skill.label);
     });
   });
 
   it('splits skills into two rows', () => {
     const { container } = renderWithTheme(
-      <SkillsMarquee skills={mockSkills} />
+      <SkillsMarquee skills={skillItems} />
     );
     // Verify that we have two marquee rows
     const rows = container.querySelectorAll('[aria-hidden="true"]');
@@ -57,7 +64,7 @@ describe('SkillsMarquee', () => {
 
   it('renders hot chips with correct style', () => {
     const { container } = renderWithTheme(
-      <SkillsMarquee skills={mockSkills} />
+      <SkillsMarquee skills={skillItems} />
     );
     expect(container.textContent).toContain('React');
     expect(container.textContent).toContain('TypeScript');
@@ -65,14 +72,14 @@ describe('SkillsMarquee', () => {
 
   it('renders cool chips with correct style', () => {
     const { container } = renderWithTheme(
-      <SkillsMarquee skills={mockSkills} />
+      <SkillsMarquee skills={skillItems} />
     );
     expect(container.textContent).toContain('Next.js');
   });
 
   it('includes hidden static list for screen readers', () => {
     const { container } = renderWithTheme(
-      <SkillsMarquee skills={mockSkills} />
+      <SkillsMarquee skills={skillItems} />
     );
     const hiddenList = container.querySelector('ul');
     expect(hiddenList).toBeInTheDocument();
@@ -80,7 +87,7 @@ describe('SkillsMarquee', () => {
 
   it('has proper accessibility attributes', () => {
     const { container } = renderWithTheme(
-      <SkillsMarquee skills={mockSkills} />
+      <SkillsMarquee skills={skillItems} />
     );
     const marqueeContainer = container.querySelector('[role="region"]');
     expect(marqueeContainer).toHaveAttribute('aria-label', 'Technical skills marquee');
@@ -88,7 +95,7 @@ describe('SkillsMarquee', () => {
 
   it('marks marquee rows as aria-hidden', () => {
     const { container } = renderWithTheme(
-      <SkillsMarquee skills={mockSkills} />
+      <SkillsMarquee skills={skillItems} />
     );
     const rows = container.querySelectorAll('[aria-hidden="true"]');
     expect(rows.length).toBe(2);
@@ -96,7 +103,7 @@ describe('SkillsMarquee', () => {
 
   it('passes axe accessibility check', async () => {
     const { container } = renderWithTheme(
-      <SkillsMarquee skills={mockSkills} />
+      <SkillsMarquee skills={skillItems} />
     );
     expect(await axe(container)).toHaveNoViolations();
   });
