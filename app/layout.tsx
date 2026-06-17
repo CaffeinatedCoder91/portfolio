@@ -38,16 +38,82 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Joanna Joseph · Frontend Engineer',
-  description: 'AI-native frontend engineer. React & TypeScript.',
+  metadataBase: new URL('https://joannamjoseph.com'),
+  title: {
+    template: '%s · Joanna Joseph',
+    default: 'Joanna Joseph · Frontend Engineer',
+  },
+  description: 'AI-native frontend engineer building LLM-powered products. React, TypeScript, Next.js.',
+  openGraph: {
+    type: 'website',
+    locale: 'en_GB',
+    url: 'https://joannamjoseph.com',
+    title: 'Joanna Joseph · Frontend Engineer',
+    description: 'AI-native frontend engineer building LLM-powered products. React, TypeScript, Next.js.',
+    siteName: 'Joanna Joseph',
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Joanna Joseph · Frontend Engineer',
+        type: 'image/png',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Joanna Joseph · Frontend Engineer',
+    description: 'AI-native frontend engineer building LLM-powered products. React, TypeScript, Next.js.',
+    images: ['/og.png'],
+    creator: '@joannamjoseph',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  icons: {
+    icon: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
+  const ldJson = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Joanna Joseph',
+    url: 'https://joannamjoseph.com',
+    jobTitle: 'Frontend Engineer',
+    sameAs: [
+      'https://linkedin.com/in/joannamjoseph',
+      'https://github.com/CaffeinatedCoder91',
+    ],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'London',
+      addressCountry: 'GB',
+    },
+  };
+
   return (
     <html
       lang="en"
       className={`${zenMaru.variable} ${bricolage.variable} ${hanken.variable} ${spaceMono.variable}`}
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(ldJson) }}
+        />
+      </head>
       <body>
         <StyledComponentsRegistry>
           <ThemeProvider theme={theme}>
