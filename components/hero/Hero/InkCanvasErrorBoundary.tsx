@@ -2,6 +2,7 @@
 // React error boundaries must be class components and run on the client.
 
 import React, { ReactNode } from 'react';
+import * as Sentry from '@sentry/nextjs';
 
 interface Props {
   children: ReactNode;
@@ -9,10 +10,6 @@ interface Props {
 
 interface State {
   hasError: boolean;
-}
-
-interface SentryInterface {
-  captureException: (error: Error) => void;
 }
 
 class InkCanvasErrorBoundary extends React.Component<Props, State> {
@@ -26,12 +23,7 @@ class InkCanvasErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: Error): void {
-    if (typeof window !== 'undefined' && 'Sentry' in window) {
-      const sentry = window.Sentry as unknown as SentryInterface | undefined;
-      if (sentry && 'captureException' in sentry) {
-        sentry.captureException(error);
-      }
-    }
+    Sentry.captureException(error);
   }
 
   render(): ReactNode {
