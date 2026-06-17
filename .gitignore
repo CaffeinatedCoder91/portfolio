@@ -48,6 +48,7 @@ SPEC.md
 AGENTS.md
 joanna-portfolio.html
 design/
+.playwright-mcp
 
 # Environment
 .env.local
