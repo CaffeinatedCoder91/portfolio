@@ -6,12 +6,21 @@ interface Props {
   href?: string;
   children: React.ReactNode;
   onClick?: () => void;
+  target?: string;
+  rel?: string;
 }
 
-const Button = ({ $variant = 'ghost', href, children, onClick }: Props) => {
+const Button = ({
+  $variant = 'ghost',
+  href,
+  children,
+  onClick,
+  target,
+  rel,
+}: Props) => {
   if (href) {
     return (
-      <StyledLink $variant={$variant} href={href}>
+      <StyledLink $variant={$variant} href={href} target={target} rel={rel}>
         {children}
       </StyledLink>
     );
