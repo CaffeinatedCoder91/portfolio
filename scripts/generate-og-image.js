@@ -87,5 +87,3 @@ const outputPath = path.join(__dirname, '../public/og.png');
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, pngBuffer);
-
-console.log(`✓ Generated OG image at ${outputPath}`);
