@@ -32,12 +32,13 @@ const mockProject: Project = {
 };
 
 const triggerRef = React.createRef<HTMLElement>();
+const handleClose = () => {};
 
 export const Open: Story = {
   args: {
     project: mockProject,
     color: 'ai',
-    onClose: () => console.log('Modal closed'),
+    onClose: handleClose,
     triggerRef,
   },
 };
@@ -46,7 +47,7 @@ export const Closed: Story = {
   args: {
     project: null,
     color: 'ai',
-    onClose: () => console.log('Modal closed'),
+    onClose: handleClose,
     triggerRef,
   },
 };
@@ -66,7 +67,7 @@ export const WithoutLinks: Story = {
       ],
     } as Project,
     color: 'shu',
-    onClose: () => console.log('Modal closed'),
+    onClose: handleClose,
     triggerRef,
   },
 };

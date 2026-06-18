@@ -14,6 +14,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const handleChange = () => {};
+
 const mockProjects: Project[] = [
   {
     title: 'Flow',
@@ -65,6 +67,6 @@ export const Default: Story = {
   args: {
     projects: mockProjects,
     activeCategory: 'All',
-    onChange: (category) => console.log('Selected:', category),
+    onChange: handleChange,
   },
 };

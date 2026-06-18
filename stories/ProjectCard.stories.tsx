@@ -14,6 +14,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const handleOpen = () => {};
+
 const mockProject: Project = {
   title: 'Flow — AI-Powered Kanban',
   category: 'AI',
@@ -33,7 +35,7 @@ export const WithLiveAndCode: Story = {
     project: mockProject,
     color: 'ai',
     index: 0,
-    onOpen: (index) => console.log('Opened project:', index),
+    onOpen: handleOpen,
   },
 };
 
@@ -52,7 +54,7 @@ export const WithoutLinks: Story = {
     } as Project,
     color: 'shu',
     index: 1,
-    onOpen: (index) => console.log('Opened project:', index),
+    onOpen: handleOpen,
   },
 };
 
@@ -69,6 +71,6 @@ export const WithPlaceholder: Story = {
     } as Project,
     color: 'mizu',
     index: 3,
-    onOpen: (index) => console.log('Opened project:', index),
+    onOpen: handleOpen,
   },
 };
