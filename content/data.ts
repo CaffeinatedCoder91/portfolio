@@ -16,7 +16,7 @@ export const role =
   'AI-native frontend engineer building {{things people actually use}}.';
 
 export const tagline =
-  'React & TypeScript specialist with 5+ years shipping scalable features for high-traffic platforms serving millions, now building LLM-powered products end to end.';
+  'React & TypeScript specialist with 5+ years shipping scalable features for data-intensive platforms, now building LLM-powered products end to end.';
 
 export const about = [
   "I'm a frontend engineer with 5+ years building scalable React applications for high-traffic platforms. I specialise in component architecture, TypeScript-first development, and shipping features that have real, measurable impact.",
@@ -104,6 +104,20 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: 'dataground',
+    category: 'AI',
+    image: '',
+    blurb: 'Private geospatial AI build for assessing address and location risk from natural-language prompts.',
+    tags: ['Next.js', 'TypeScript', 'Claude API', 'Mapbox', 'Geospatial'],
+    note: 'Private build',
+    points: [
+      'Built a geocoding workflow that turns address input into structured location data.',
+      'Integrated the Claude API to interpret user prompts and generate risk assessment summaries.',
+      'Combined geospatial signals with AI-assisted assessment logic to surface location risk clearly.',
+      'Rendered results on an interactive Mapbox map so users could understand risk in context.',
+    ],
+  },
+  {
     title: 'komorebi — Shopify Store',
     category: 'E-commerce',
     image: '',
@@ -145,14 +159,18 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'grandma',
-    category: 'Experiment',
+    title: 'In Loving Memory — Maseline Joseph',
+    category: 'Personal',
     image: '',
-    blurb: 'An experiment in progress.',
-    tags: ['TypeScript'],
-    code: 'https://github.com/CaffeinatedCoder91/grandma',
-    note: 'Work in progress',
-    points: ['Add description here when ready.'],
+    blurb: 'A memorial site built for my grandmother. A quiet, respectful space for family to gather service details, RSVP and remember her life.',
+    tags: ['Next.js', 'TypeScript', 'Vercel'],
+    live: 'https://maselinejoseph.vercel.app/',
+    points: [
+      'Designed and built a full memorial site end to end — service details, directions, RSVP form, flower preferences and a tribute section.',
+      'Mobile-first and accessible throughout — family members of all ages and abilities needed to be able to use it easily.',
+      'Shipped quickly and with care — this was personal, not professional, and the deadline was real.',
+      'A reminder that the best reason to build something is for the people you love.',
+    ],
   },
 ];
 
@@ -169,6 +187,7 @@ export const experience: Role[] = [
       'Built a complex campaign management system with dynamic forms and real-time preview, requiring sophisticated state management and careful data flow design.',
       'Implemented WCAG 2.1 AA accessibility standards across all components — proper ARIA labels, semantic HTML, keyboard navigation.',
       'Conducted code reviews emphasising quality, accessibility, and maintainability.',
+      'Built a working implementation using the Loqate API and AI-assisted development to explore address lookup and validation workflows.',
     ],
   },
   {

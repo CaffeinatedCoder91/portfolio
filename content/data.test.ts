@@ -10,8 +10,8 @@ const isValidTokenColor = (color: unknown): color is TokenColor => {
 
 describe('content/data', () => {
   describe('Projects', () => {
-    it('has 5 projects', () => {
-      expect(data.projects).toHaveLength(5);
+    it('has 6 projects', () => {
+      expect(data.projects).toHaveLength(6);
     });
 
     it('every project has required fields', () => {
@@ -44,6 +44,17 @@ describe('content/data', () => {
       expect(typeof flow?.code).toBe('string');
       expect(flow?.live?.startsWith('https://')).toBe(true);
       expect(flow?.code?.startsWith('https://')).toBe(true);
+    });
+
+    it('dataground is private AI project after Flow', () => {
+      const dataground = data.projects[1];
+      expect(dataground?.title).toBe('dataground');
+      expect(dataground?.category).toBe('AI');
+      expect(dataground?.tags).toContain('Mapbox');
+      expect(dataground?.tags).toContain('Geospatial');
+      expect(dataground?.note).toBeDefined();
+      expect(dataground?.live).toBeUndefined();
+      expect(dataground?.code).toBeUndefined();
     });
 
     it('komorebi has note field and no live or code URLs', () => {
