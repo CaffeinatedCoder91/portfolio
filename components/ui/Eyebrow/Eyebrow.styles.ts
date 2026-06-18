@@ -18,10 +18,7 @@ export const StyledEyebrow = styled.span<{ $color?: EyebrowColor; $hasNumber?: b
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: ${({ $hasNumber, theme }) =>
-    $hasNumber
-      ? getTheme(theme).colors.inkSoft
-      : getTheme(theme).colors.ink};
+  color: ${({ theme }) => getTheme(theme).colors.ink};
   display: inline-block;
   position: relative;
   padding: 0 0.15em;

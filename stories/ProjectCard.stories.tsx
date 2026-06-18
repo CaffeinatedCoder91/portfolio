@@ -67,7 +67,7 @@ export const WithPlaceholder: Story = {
       blurb: 'A personal PWA where you speak your thoughts freely and an AI companion responds warmly.',
       tags: ['TypeScript', 'PWA', 'AI'],
       points: ['Progressive web app for voice-first journaling.'],
-      code: 'https://github.com/CaffeinatedCoder91/vesper',
+      note: 'Private build',
     } as Project,
     color: 'mizu',
     index: 3,

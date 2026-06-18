@@ -38,7 +38,7 @@ export const Label = styled.div`
   font-family: ${theme.fonts.mono};
   font-weight: 700;
   font-size: 0.75rem;
-  color: ${theme.colors.inkSoft};
+  color: ${theme.colors.ink};
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: ${theme.space[2]};

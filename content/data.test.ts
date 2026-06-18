@@ -46,15 +46,24 @@ describe('content/data', () => {
       expect(flow?.code?.startsWith('https://')).toBe(true);
     });
 
-    it('dataground is private AI project after Flow', () => {
+    it('dataground is public AI project after Flow', () => {
       const dataground = data.projects[1];
       expect(dataground?.title).toBe('dataground');
       expect(dataground?.category).toBe('AI');
       expect(dataground?.tags).toContain('Mapbox');
       expect(dataground?.tags).toContain('Geospatial');
-      expect(dataground?.note).toBeDefined();
-      expect(dataground?.live).toBeUndefined();
-      expect(dataground?.code).toBeUndefined();
+      expect(dataground?.note).toBeUndefined();
+      expect(dataground?.live).toBe('https://dataground-drab.vercel.app/');
+      expect(dataground?.code).toBe('https://github.com/CaffeinatedCoder91/dataground');
+    });
+
+    it('vesper is a private AI project', () => {
+      const vesper = data.projects.find((p) => p.title === 'vesper');
+      expect(vesper).toBeDefined();
+      expect(vesper?.category).toBe('AI');
+      expect(vesper?.note).toBe('Private build');
+      expect(vesper?.live).toBeUndefined();
+      expect(vesper?.code).toBeUndefined();
     });
 
     it('komorebi has note field and no live or code URLs', () => {
