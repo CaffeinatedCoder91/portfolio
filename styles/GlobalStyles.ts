@@ -6,9 +6,14 @@ type ThemeContext = {
 };
 
 const color =
-  (token: keyof Theme['colors']) =>
+  (token: keyof Theme['rawColors']) =>
   ({ theme }: ThemeContext): string =>
-    (theme ?? defaultTheme).colors[token];
+    (theme ?? defaultTheme).rawColors[token];
+
+const darkColor =
+  (token: keyof Theme['darkColors']) =>
+  ({ theme }: ThemeContext): string =>
+    (theme ?? defaultTheme).darkColors[token];
 
 const GlobalStyles = createGlobalStyle`
   :root {
@@ -23,6 +28,17 @@ const GlobalStyles = createGlobalStyle`
     --fuji: ${color('fuji')};
     --matcha: ${color('matcha')};
     --kincha: ${color('kincha')};
+    --white: ${color('white')};
+    --shu-highlight: ${color('shuHighlight')};
+    --modal-backdrop: ${color('modalBackdrop')};
+  }
+
+  html.dark {
+    --paper: ${darkColor('paper')};
+    --paper-2: ${darkColor('paper2')};
+    --ink: ${darkColor('ink')};
+    --ink-soft: ${darkColor('inkSoft')};
+    --line: ${darkColor('line')};
   }
 
   * {

@@ -25,7 +25,7 @@ const Skills = () => {
     <ScrollReveal>
       <Section id="skills">
         <SectionContent>
-          <Eyebrow $color="mizu">my toolbox</Eyebrow>
+          <Eyebrow $number="002">SKILLS</Eyebrow>
           <Title>
             Things I reach for,{' '}
             <em>first.</em>

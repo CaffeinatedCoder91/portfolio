@@ -33,7 +33,7 @@ describe('Skills', () => {
   it('renders the skills section with flattened content data', () => {
     renderWithTheme(<Skills />);
 
-    expect(screen.getByText('my toolbox')).toBeInTheDocument();
+    expect(screen.getByText('002 / SKILLS')).toBeInTheDocument();
     skills.flatMap((skillGroup) => skillGroup.items).forEach((skill) => {
       expect(screen.getByText(skill)).toBeInTheDocument();
     });

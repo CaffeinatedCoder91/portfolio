@@ -11,11 +11,22 @@ interface Particle {
   vx: number;
   vy: number;
   life: number;
+  decay: number;
+  radius: number;
   color: string;
 }
 
-const colors = theme.ink.palette;
-const sparkleColor = theme.ink.sparkle;
+const hexToRgb = (hex: string) => {
+  const value = hex.replace('#', '');
+  const red = Number.parseInt(value.slice(0, 2), 16);
+  const green = Number.parseInt(value.slice(2, 4), 16);
+  const blue = Number.parseInt(value.slice(4, 6), 16);
+
+  return `${red}, ${green}, ${blue}`;
+};
+
+const colors = theme.ink.palette.map(hexToRgb);
+const sparkleColor = hexToRgb(theme.ink.sparkle);
 const sparkleChance = 0.06;
 
 const InkCanvas = () => {
@@ -24,6 +35,7 @@ const InkCanvas = () => {
   const animationRef = useRef<ReturnType<typeof requestAnimationFrame> | null>(
     null
   );
+  const lastPointRef = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia(
@@ -48,12 +60,12 @@ const InkCanvas = () => {
     const observer = new ResizeObserver(resizeCanvas);
     observer.observe(document.documentElement);
 
-    const emitParticles = (x: number, y: number) => {
-      const particleCount = Math.random() * 3 + 2;
+    const emitParticles = (x: number, y: number, speed: number) => {
+      const particleCount = Math.min(3 + Math.floor(speed / 6), 9);
 
       for (let i = 0; i < particleCount; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 2 + 1;
+        const drift = Math.random() * 0.75 + 0.15;
 
         const shouldSparkle = Math.random() < sparkleChance;
         const color = shouldSparkle
@@ -61,11 +73,13 @@ const InkCanvas = () => {
           : colors[Math.floor(Math.random() * colors.length)];
 
         particlesRef.current.push({
-          x,
-          y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed,
+          x: x + (Math.random() - 0.5) * 10,
+          y: y + (Math.random() - 0.5) * 10,
+          vx: Math.cos(angle) * drift,
+          vy: Math.sin(angle) * drift,
           life: 1,
+          decay: 0.014 + Math.random() * 0.02,
+          radius: 6 + Math.random() * (14 + speed * 0.4),
           color,
         });
       }
@@ -79,18 +93,30 @@ const InkCanvas = () => {
 
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.1;
-        p.life -= 0.02;
+        p.vx *= 0.96;
+        p.vy *= 0.96;
+        p.life -= p.decay;
 
         if (p.life <= 0) {
           particlesRef.current.splice(i, 1);
           continue;
         }
 
-        ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.life;
+        const alpha = p.life * 0.55;
+        const gradient = ctx.createRadialGradient(
+          p.x,
+          p.y,
+          0,
+          p.x,
+          p.y,
+          p.radius
+        );
+        gradient.addColorStop(0, `rgba(${p.color}, ${alpha})`);
+        gradient.addColorStop(1, `rgba(${p.color}, 0)`);
+
+        ctx.fillStyle = gradient;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fill();
       }
 
@@ -101,7 +127,14 @@ const InkCanvas = () => {
     animate();
 
     const handlePointerMove = (e: PointerEvent) => {
-      emitParticles(e.clientX, e.clientY);
+      const lastPoint = lastPointRef.current;
+      const speed =
+        lastPoint === null
+          ? 0
+          : Math.hypot(e.clientX - lastPoint.x, e.clientY - lastPoint.y);
+
+      lastPointRef.current = { x: e.clientX, y: e.clientY };
+      emitParticles(e.clientX, e.clientY, speed);
     };
 
     window.addEventListener('pointermove', handlePointerMove, { passive: true });

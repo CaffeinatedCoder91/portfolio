@@ -13,7 +13,7 @@ describe('ScrollCue', () => {
   it('renders decorative scroll cue text', () => {
     renderWithTheme(<ScrollCue />);
 
-    expect(screen.getByText('scroll')).toBeInTheDocument();
+    expect(screen.getByText('SCROLL')).toBeInTheDocument();
   });
 
   it('is hidden from assistive technology', () => {

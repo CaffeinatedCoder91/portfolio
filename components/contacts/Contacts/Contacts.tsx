@@ -1,6 +1,7 @@
 import React from 'react';
 import { contact } from '@/content/data';
 import ScrollReveal from '@/components/ui/ScrollReveal';
+import Eyebrow from '@/components/ui/Eyebrow';
 import ContactCard from './ContactCard';
 import {
   Main,
@@ -8,7 +9,6 @@ import {
   TitleWrapper,
   Breadcrumb,
   ContentSection,
-  Eyebrow,
   Title,
   Subtitle,
   ContactsGrid,
@@ -30,7 +30,7 @@ const Contacts = () => {
 
       <ContentSection>
         <ScrollReveal>
-          <Eyebrow>get in touch</Eyebrow>
+          <Eyebrow $number="005">CONTACT</Eyebrow>
           <Title>{contact.head}</Title>
           <Subtitle>{contact.sub}</Subtitle>
           <ContactsGrid>

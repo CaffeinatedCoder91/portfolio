@@ -29,3 +29,9 @@ export const RevealCard = styled.div`
   background: ${({ theme }) => theme.colors.paper2};
   border-radius: ${({ theme }) => theme.radius.sm};
 `;
+
+export const CuePreview = styled.div`
+  position: relative;
+  min-height: ${({ theme }) => theme.space[9]};
+  background: ${({ theme }) => theme.colors.paper};
+`;

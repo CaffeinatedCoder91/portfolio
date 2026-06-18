@@ -17,15 +17,12 @@ const scroll40 = keyframes`
   }
 `;
 
-const scroll50Reverse = keyframes`
-  to {
-    transform: translateX(50%);
-  }
-`;
-
 export const Section = styled.section``;
 
-export const SectionContent = styled.div``;
+export const SectionContent = styled.div`
+  width: min(${({ theme }) => getTheme(theme).sizes.contentMaxWidth}, 90vw);
+  margin-inline: auto;
+`;
 
 export const Title = styled.h2`
   font-family: ${({ theme }) => getTheme(theme).fonts.display};
@@ -33,7 +30,7 @@ export const Title = styled.h2`
   font-size: clamp(2rem, 5.5vw, 3.4rem);
   line-height: 1.04;
   letter-spacing: -0.02em;
-  margin-bottom: ${({ theme }) => getTheme(theme).space[6]};
+  margin-bottom: ${({ theme }) => getTheme(theme).space[7]};
   max-width: 18ch;
 
   em {
@@ -50,8 +47,20 @@ export const MarqueeContainer = styled.div<{ $prefersReduced: boolean }>`
   ${({ $prefersReduced }) =>
     !$prefersReduced &&
     css`
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
-      mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+      -webkit-mask-image: linear-gradient(
+        90deg,
+        transparent,
+        var(--ink) 10%,
+        var(--ink) 90%,
+        transparent
+      );
+      mask-image: linear-gradient(
+        90deg,
+        transparent,
+        var(--ink) 10%,
+        var(--ink) 90%,
+        transparent
+      );
     `}
 `;
 
@@ -66,9 +75,9 @@ export const MarqueeRow = styled.div<{ $reverse?: boolean; $duration: number; $p
       return css``;
     }
 
-    const animation = $reverse ? scroll50Reverse : scroll40;
     return css`
-      animation: ${animation} ${$duration}s linear infinite;
+      animation: ${scroll40} ${$duration}s linear infinite;
+      animation-direction: ${$reverse ? 'reverse' : 'normal'};
 
       &:hover {
         animation-play-state: paused;

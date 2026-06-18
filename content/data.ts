@@ -25,6 +25,13 @@ export const about = [
   'Outside of code I embroider, build terrariums, and tend to 40 (and counting) houseplants. Apparently I like nurturing things that take patience and attention to detail.',
 ];
 
+export const aboutStatement = 'I build things people actually use.';
+
+export const aboutMetadata = [
+  { label: 'FOCUS', value: 'Frontend Engineering · AI products' },
+  { label: 'LOCATION', value: location },
+] as const;
+
 export const facts: Fact[] = [
   { num: '5+', label: 'years engineering' },
   { num: '96', label: 'component library' },

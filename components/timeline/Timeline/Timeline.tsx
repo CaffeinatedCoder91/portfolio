@@ -18,7 +18,7 @@ const Timeline = () => {
     <Section id="experience" aria-labelledby="timeline-title">
       <Wrapper>
         <ScrollReveal>
-          <Eyebrow $color="fuji">the road so far</Eyebrow>
+          <Eyebrow $number="003">JOURNEY</Eyebrow>
           <Title id="timeline-title">Experience & education</Title>
 
           <Columns>

@@ -25,8 +25,14 @@ const modalEntry = keyframes`
 `;
 
 export const Section = styled.section`
-  padding: ${({ theme }) => getTheme(theme).sizes.sectionPadding} 0;
+  padding: ${({ theme }) => getTheme(theme).space[8]} 0
+    ${({ theme }) => getTheme(theme).sizes.sectionPadding};
   position: relative;
+
+  @media (max-width: ${({ theme }) => getTheme(theme).sizes.timelineBreakpoint}) {
+    padding: ${({ theme }) => getTheme(theme).space[7]} 0
+      ${({ theme }) => getTheme(theme).space[8]};
+  }
 `;
 
 export const Wrapper = styled.div`
@@ -153,11 +159,12 @@ export const CardTitle = styled.h3`
 
 export const CardBlurb = styled.p`
   font-family: ${({ theme }) => getTheme(theme).fonts.body};
-  font-size: 0.98rem;
+  font-size: ${({ theme }) => getTheme(theme).sizes.projectBlurbFont};
   font-weight: 400;
   color: ${({ theme }) => getTheme(theme).colors.inkSoft};
   margin: 0 0 ${({ theme }) => getTheme(theme).sizes.projectBlurbMarginBottom};
   line-height: 1.6;
+  min-height: ${({ theme }) => getTheme(theme).sizes.projectBlurbMinHeight};
   flex-grow: 1;
 `;
 
@@ -165,7 +172,13 @@ export const Tags = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: ${({ theme }) => getTheme(theme).sizes.projectTagGap};
+  align-content: flex-start;
+  min-height: ${({ theme }) => getTheme(theme).sizes.projectTagsMinHeight};
   margin-bottom: ${({ theme }) => getTheme(theme).sizes.projectTagMarginBottom};
+
+  @media (max-width: ${({ theme }) => getTheme(theme).sizes.timelineBreakpoint}) {
+    min-height: auto;
+  }
 `;
 
 export const CardFooter = styled.div`

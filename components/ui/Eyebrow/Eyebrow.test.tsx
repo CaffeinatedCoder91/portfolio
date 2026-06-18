@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, it, expect } from 'vitest';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import '@testing-library/jest-dom';
 import { ThemeProvider } from 'styled-components';
@@ -46,6 +46,12 @@ describe('Eyebrow', () => {
       <Eyebrow>about</Eyebrow>
     );
     expect(container.querySelector('span')).toBeInTheDocument();
+  });
+
+  it('renders numbered variant with section prefix', () => {
+    renderWithTheme(<Eyebrow $number="001">ABOUT</Eyebrow>);
+
+    expect(screen.getByText('001 / ABOUT')).toBeInTheDocument();
   });
 
   it('passes axe accessibility check', async () => {
