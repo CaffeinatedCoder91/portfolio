@@ -18,14 +18,13 @@ const swipe = keyframes`
   }
 `;
 
-const bob = keyframes`
-  0%, 100% {
-    transform: translateY(0);
-    opacity: 0.45;
+const growLine = keyframes`
+  from {
+    transform: scaleY(0);
   }
-  50% {
-    transform: translateY(var(--hero-bob-distance));
-    opacity: 1;
+
+  to {
+    transform: scaleY(1);
   }
 `;
 
@@ -239,32 +238,37 @@ export const Glyph = styled.span<GlyphProps>`
 `;
 
 export const ScrollCueContainer = styled.div`
-  --hero-bob-distance: ${({ theme }) => getTheme(theme).sizes.heroBobDistance};
   position: absolute;
-  bottom: ${({ theme }) => getTheme(theme).space[6]};
+  bottom: ${({ theme }) => getTheme(theme).space[3]};
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${({ theme }) => getTheme(theme).sizes.heroScrollGap};
+  gap: ${({ theme }) => getTheme(theme).space[2]};
   color: ${({ theme }) => getTheme(theme).colors.inkSoft};
-  font-family: ${({ theme }) => getTheme(theme).fonts.mono};
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
   pointer-events: none;
+`;
 
-  svg {
-    width: ${({ theme }) => getTheme(theme).sizes.heroScrollIcon};
-    height: ${({ theme }) => getTheme(theme).sizes.heroScrollIcon};
-    animation: ${bob} 1.8s ease-in-out infinite;
-  }
+export const ScrollText = styled.span`
+  font-family: ${({ theme }) => getTheme(theme).fonts.mono};
+  font-size: ${({ theme }) => getTheme(theme).sizes.scrollCueFont};
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: ${({ theme }) => getTheme(theme).colors.inkSoft};
+`;
+
+export const ScrollLine = styled.div`
+  width: ${({ theme }) => getTheme(theme).sizes.scrollCueLineWidth};
+  height: ${({ theme }) => getTheme(theme).sizes.scrollCueLineHeight};
+  background: ${({ theme }) => getTheme(theme).colors.inkSoft};
+  transform-origin: top;
+  animation: ${growLine} 1.8s ease-in-out infinite;
 
   @media (prefers-reduced-motion: reduce) {
-    svg {
-      animation: none;
-    }
+    animation: none;
+    height: ${({ theme }) => getTheme(theme).sizes.scrollCueLineHeight};
   }
 `;

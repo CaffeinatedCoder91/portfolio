@@ -18,6 +18,13 @@ export const Default: Story = {
   },
 };
 
+export const Numbered: Story = {
+  args: {
+    $number: '001',
+    children: 'ABOUT',
+  },
+};
+
 export const Ai: Story = {
   args: {
     $color: 'ai',
@@ -49,6 +56,7 @@ export const AllColors: Story = {
       <Eyebrow $color="matcha">Matcha — Moss</Eyebrow>
       <Eyebrow $color="mizu">Mizu — Water Blue</Eyebrow>
       <Eyebrow $color="fuji">Fuji — Wisteria</Eyebrow>
+      <Eyebrow $number="001">ABOUT</Eyebrow>
     </Stack>
   ),
 };

@@ -6,11 +6,15 @@ type EyebrowColor = keyof Theme['colors'];
 
 interface Props {
   $color?: EyebrowColor;
+  $number?: string;
   children: React.ReactNode;
 }
 
-const Eyebrow = ({ $color = 'kincha', children }: Props) => (
-  <StyledEyebrow $color={$color}>{children}</StyledEyebrow>
+const Eyebrow = ({ $color = 'kincha', $number, children }: Props) => (
+  <StyledEyebrow $color={$color} $hasNumber={Boolean($number)}>
+    {$number && `${$number} / `}
+    {children}
+  </StyledEyebrow>
 );
 
 export default Eyebrow;

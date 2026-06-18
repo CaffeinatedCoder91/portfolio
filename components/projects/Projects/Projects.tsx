@@ -10,7 +10,7 @@ const Projects = () => {
     <Section id="projects" aria-labelledby="projects-title">
       <Wrapper>
         <ScrollReveal>
-          <Eyebrow $color="shu">my work</Eyebrow>
+          <Eyebrow $number="004">WORK</Eyebrow>
           <Title id="projects-title">Selected projects</Title>
           <ProjectGrid projects={projects} />
         </ScrollReveal>

@@ -60,6 +60,17 @@ export const BrandLink = styled(Link)`
   line-height: 1.2;
 `;
 
+export const NavActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: ${({ theme }) => getTheme(theme).space[2]};
+  margin-left: auto;
+
+  @media (max-width: 48.75rem) {
+    gap: ${({ theme }) => getTheme(theme).space[2]};
+  }
+`;
+
 export const StatusDot = styled.span`
   --dot-pulse-size: calc(${({ theme }) => getTheme(theme).space[2]} + ${({ theme }) => getTheme(theme).space[1]} / 4);
 

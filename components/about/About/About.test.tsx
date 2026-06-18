@@ -4,7 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import '@testing-library/jest-dom';
 import { ThemeProvider } from 'styled-components';
-import { about } from '../../../content/data';
+import { about, aboutMetadata, aboutStatement } from '../../../content/data';
 import { theme } from '../../../styles/theme';
 import About from './About';
 
@@ -17,12 +17,17 @@ const renderWithTheme = (component: React.ReactElement) => {
 };
 
 describe('About', () => {
-  it('renders four about paragraphs', () => {
+  it('renders content from data', () => {
     renderWithTheme(<About />);
 
+    expect(screen.getByRole('heading', { name: aboutStatement })).toBeInTheDocument();
     expect(screen.getAllByText((_, element) => element?.tagName === 'P')).toHaveLength(4);
     about.forEach((paragraph) => {
       expect(screen.getByText(paragraph)).toBeInTheDocument();
+    });
+    aboutMetadata.forEach((item) => {
+      expect(screen.getByText(item.label)).toBeInTheDocument();
+      expect(screen.getByText(item.value)).toBeInTheDocument();
     });
   });
 

@@ -49,31 +49,6 @@ export const ContentSection = styled.section`
   padding: ${theme.sizes.sectionPadding} 0;
 `;
 
-export const Eyebrow = styled.div`
-  font-family: ${theme.fonts.mono};
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: ${theme.colors.ink};
-  display: inline-block;
-  margin-bottom: ${theme.space[4]};
-  position: relative;
-  z-index: 1;
-  padding: 0 0.15em;
-
-  &::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -0.05em;
-    height: 0.15em;
-    background: ${theme.colors.fuji};
-    z-index: -1;
-  }
-`;
-
 export const Title = styled.h2`
   font-family: ${theme.fonts.display};
   font-weight: 800;
