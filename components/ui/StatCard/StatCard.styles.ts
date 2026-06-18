@@ -32,7 +32,7 @@ export const Label = styled.div`
   font-family: ${({ theme }) => getTheme(theme).fonts.mono};
   font-weight: 400;
   font-size: 0.72rem;
-  color: ${({ theme }) => getTheme(theme).colors.inkSoft};
+  color: ${({ theme }) => getTheme(theme).colors.ink};
   text-transform: uppercase;
   letter-spacing: 0.06em;
 `;

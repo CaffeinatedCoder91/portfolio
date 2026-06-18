@@ -96,7 +96,7 @@ const Hero = ({ inkCanvas }: Props) => {
               alt="Joanna Joseph"
               width={600}
               height={600}
-              priority
+              sizes="(max-width: 820px) 0px, 36vw"
             />
           </PhotoWrapper>
         </PhotoColumn>

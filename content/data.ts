@@ -107,9 +107,10 @@ export const projects: Project[] = [
     title: 'dataground',
     category: 'AI',
     image: '',
-    blurb: 'Private geospatial AI build for assessing address and location risk from natural-language prompts.',
+    blurb: 'Geospatial AI build for assessing address and location risk from natural-language prompts.',
     tags: ['Next.js', 'TypeScript', 'Claude API', 'Mapbox', 'Geospatial'],
-    note: 'Private build',
+    live: 'https://dataground-drab.vercel.app/',
+    code: 'https://github.com/CaffeinatedCoder91/dataground',
     points: [
       'Built a geocoding workflow that turns address input into structured location data.',
       'Integrated the Claude API to interpret user prompts and generate risk assessment summaries.',
@@ -152,7 +153,7 @@ export const projects: Project[] = [
     image: '',
     blurb: 'A personal PWA where you speak your thoughts freely and an AI companion responds warmly.',
     tags: ['TypeScript', 'PWA', 'AI'],
-    code: 'https://github.com/CaffeinatedCoder91/vesper',
+    note: 'Private build',
     points: [
       'Progressive web app for voice-first journaling.',
       'Add more detail here when ready.',

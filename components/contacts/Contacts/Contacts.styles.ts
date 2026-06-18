@@ -35,7 +35,7 @@ export const TitleWrapper = styled.h1`
 export const Breadcrumb = styled.p`
   font-family: ${theme.fonts.mono};
   font-size: 0.95rem;
-  color: ${theme.colors.inkSoft};
+  color: ${theme.colors.ink};
   margin-top: ${theme.space[2]};
 
   strong {
@@ -61,7 +61,7 @@ export const Title = styled.h2`
 
 export const Subtitle = styled.p`
   font-size: 1.15rem;
-  color: ${theme.colors.inkSoft};
+  color: ${theme.colors.ink};
   margin-bottom: ${theme.space[6]};
   max-width: 56ch;
   line-height: 1.6;
