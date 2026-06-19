@@ -10,3 +10,6 @@ Sentry.init({
     Sentry.replayIntegration(),
   ],
 });
+
+// Instrument App Router client-side navigation transitions for tracing.
+export const onRouterTransitionStart = Sentry.captureRouterTransitionStart;
