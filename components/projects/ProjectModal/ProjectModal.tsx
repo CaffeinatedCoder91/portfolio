@@ -29,6 +29,7 @@ interface Props {
 }
 
 const focusableSelector = 'button, a, [tabindex]:not([tabindex="-1"])';
+const modalOpenDataKey = 'projectModalOpen';
 
 const ProjectModal = ({ project, color = 'ai', onClose, triggerRef }: Props) => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -52,10 +53,26 @@ const ProjectModal = ({ project, color = 'ai', onClose, triggerRef }: Props) => 
   useEffect(() => {
     if (!isOpen) return;
 
-    closeButtonRef.current?.focus();
-
+    const scrollY = window.scrollY;
     const originalOverflow = document.body.style.overflow;
+    const originalOverscrollBehavior = document.body.style.overscrollBehavior;
+    const originalPosition = document.body.style.position;
+    const originalTop = document.body.style.top;
+    const originalWidth = document.body.style.width;
+    const originalHtmlOverscrollBehavior =
+      document.documentElement.style.overscrollBehavior;
+    const originalModalOpen = document.body.dataset[modalOpenDataKey];
+
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
     document.body.style.overflow = 'hidden';
+    document.body.style.overscrollBehavior = 'none';
+    document.documentElement.style.overscrollBehavior = 'none';
+    document.body.dataset[modalOpenDataKey] = 'true';
+
+    closeButtonRef.current?.focus({ preventScroll: true });
+
     const triggerElement = triggerRef.current;
 
     const handleWindowKeyDown = (e: KeyboardEvent) => {
@@ -90,9 +107,22 @@ const ProjectModal = ({ project, color = 'ai', onClose, triggerRef }: Props) => 
 
     return () => {
       document.removeEventListener('keydown', handleWindowKeyDown);
+      document.body.style.position = originalPosition;
+      document.body.style.top = originalTop;
+      document.body.style.width = originalWidth;
       document.body.style.overflow = originalOverflow;
+      document.body.style.overscrollBehavior = originalOverscrollBehavior;
+      document.documentElement.style.overscrollBehavior =
+        originalHtmlOverscrollBehavior;
 
-      triggerElement?.focus();
+      if (originalModalOpen === undefined) {
+        delete document.body.dataset[modalOpenDataKey];
+      } else {
+        document.body.dataset[modalOpenDataKey] = originalModalOpen;
+      }
+
+      triggerElement?.focus({ preventScroll: true });
+      window.scrollTo(0, scrollY);
     };
   }, [isOpen, onClose, triggerRef]);
 
