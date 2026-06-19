@@ -39,7 +39,8 @@ export const NavPill = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: ${({ theme }) => getTheme(theme).space[3]};
-  width: min(${({ theme }) => getTheme(theme).sizes.navMaxWidth}, 90vw);
+  width: 100%;
+  max-width: ${({ theme }) => getTheme(theme).sizes.navMaxWidth};
   margin-inline: auto;
   padding: ${({ theme }) =>
     `${getTheme(theme).space[2]} calc(${getTheme(theme).space[2]} + ${getTheme(theme).space[1]} / 2) ${getTheme(theme).space[2]} calc(${getTheme(theme).space[3]} + ${getTheme(theme).space[1]})`};
@@ -64,11 +65,6 @@ export const NavActions = styled.div`
   display: flex;
   align-items: center;
   gap: ${({ theme }) => getTheme(theme).space[2]};
-  margin-left: auto;
-
-  @media (max-width: 48.75rem) {
-    gap: ${({ theme }) => getTheme(theme).space[2]};
-  }
 `;
 
 export const StatusDot = styled.span`

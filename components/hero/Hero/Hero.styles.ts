@@ -35,6 +35,10 @@ export const HeroSection = styled.section`
   align-items: center;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: ${({ theme }) => getTheme(theme).sizes.heroMobilePaddingBreakpoint}) {
+    padding-bottom: ${({ theme }) => getTheme(theme).space[7]};
+  }
 `;
 
 export const GlyphsLayer = styled.div`
@@ -249,6 +253,10 @@ export const ScrollCueContainer = styled.div`
   gap: ${({ theme }) => getTheme(theme).space[2]};
   color: ${({ theme }) => getTheme(theme).colors.inkSoft};
   pointer-events: none;
+
+  @media (max-width: ${({ theme }) => getTheme(theme).sizes.heroScrollCueHideBreakpoint}) {
+    display: none;
+  }
 `;
 
 export const ScrollText = styled.span`

@@ -41,6 +41,7 @@ export const Title = styled.h2`
 
 export const MarqueeContainer = styled.div<{ $prefersReduced: boolean }>`
   position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => getTheme(theme).space[3]};
