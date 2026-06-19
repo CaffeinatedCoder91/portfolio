@@ -48,7 +48,7 @@ describe('content/data', () => {
 
     it('dataground is public AI project after Flow', () => {
       const dataground = data.projects[1];
-      expect(dataground?.title).toBe('dataground');
+      expect(dataground?.title).toBe('Dataground');
       expect(dataground?.category).toBe('AI');
       expect(dataground?.tags).toContain('Mapbox');
       expect(dataground?.tags).toContain('Geospatial');
@@ -58,7 +58,7 @@ describe('content/data', () => {
     });
 
     it('vesper is a private AI project', () => {
-      const vesper = data.projects.find((p) => p.title === 'vesper');
+      const vesper = data.projects.find((p) => p.title === 'Vesper');
       expect(vesper).toBeDefined();
       expect(vesper?.category).toBe('AI');
       expect(vesper?.note).toBe('Private build');
@@ -67,7 +67,7 @@ describe('content/data', () => {
     });
 
     it('komorebi has note field and no live or code URLs', () => {
-      const komorebi = data.projects.find((p) => p.title === 'komorebi — Shopify Store');
+      const komorebi = data.projects.find((p) => p.title === 'Komorebi — Plant & Terrarium Shop');
       expect(komorebi).toBeDefined();
       expect(komorebi?.note).toBeDefined();
       expect(komorebi?.live).toBeUndefined();
