@@ -115,6 +115,8 @@ export const theme = {
     heroPaddingTop: 'clamp(140px, 19vw, 200px)',
     heroContentMaxWidth: '1120px',
     heroBreakpoint: '820px',
+    heroMobilePaddingBreakpoint: '780px',
+    heroScrollCueHideBreakpoint: '599px',
     heroRoleBreakpoint: '560px',
     heroGridGap: '3rem',
     heroTextGap: '1rem',

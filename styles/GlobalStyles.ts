@@ -51,6 +51,7 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     height: 100%;
+    overflow-x: clip;
   }
 
   body {
@@ -61,7 +62,7 @@ const GlobalStyles = createGlobalStyle`
     color: var(--ink);
     background: var(--paper);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
     -webkit-font-smoothing: antialiased;
   }
 

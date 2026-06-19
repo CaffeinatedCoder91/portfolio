@@ -81,15 +81,6 @@ const NavInner = ({ name }: Props) => {
           <StatusDot aria-hidden="true" />
           <span>{name}</span>
         </BrandLink>
-        <MenuToggle
-          type="button"
-          aria-label="Menu"
-          aria-expanded={menuOpen}
-          aria-controls="primary-navigation"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          ☰
-        </MenuToggle>
         <NavActions>
           <LinkList id="primary-navigation" aria-label="Primary" $open={menuOpen}>
             {links.map((link) => {
@@ -110,6 +101,15 @@ const NavInner = ({ name }: Props) => {
             })}
           </LinkList>
           <ThemeToggle />
+          <MenuToggle
+            type="button"
+            aria-label="Menu"
+            aria-expanded={menuOpen}
+            aria-controls="primary-navigation"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            ☰
+          </MenuToggle>
         </NavActions>
       </NavPill>
     </NavShell>
