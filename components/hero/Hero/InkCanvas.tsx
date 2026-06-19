@@ -28,6 +28,7 @@ const hexToRgb = (hex: string) => {
 const colors = theme.ink.palette.map(hexToRgb);
 const sparkleColor = hexToRgb(theme.ink.sparkle);
 const sparkleChance = 0.06;
+const modalOpenDataKey = 'projectModalOpen';
 
 const InkCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -154,12 +155,23 @@ const InkCanvas = () => {
     animate();
 
     const handlePointerMove = (e: PointerEvent) => {
+      if (document.body.dataset[modalOpenDataKey] === 'true') {
+        particlesRef.current = [];
+        lastPointRef.current = null;
+        return;
+      }
+
       // Convert viewport coordinates to canvas-local coordinates so particles
       // land exactly under the cursor regardless of scroll position or the
       // nav height offset above the hero section.
       const rect = canvas.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
+
+      if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+        lastPointRef.current = null;
+        return;
+      }
 
       const lastPoint = lastPointRef.current;
       const speed =

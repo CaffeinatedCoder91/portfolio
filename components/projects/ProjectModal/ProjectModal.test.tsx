@@ -1,5 +1,5 @@
 import React from 'react';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { axe } from 'jest-axe';
@@ -24,7 +24,18 @@ describe('ProjectModal', () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
     document.body.style.overflow = '';
+    document.body.style.overscrollBehavior = '';
+    document.documentElement.style.overscrollBehavior = '';
+    delete document.body.dataset.projectModalOpen;
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it('returns null when project is null', () => {
@@ -167,7 +178,7 @@ describe('ProjectModal', () => {
     expect(mockOnClose).not.toHaveBeenCalled();
   });
 
-  it('hides body overflow when open', () => {
+  it('locks document scrolling when open', () => {
     renderWithTheme(
       <ProjectModal
         project={projectWithLinks}
@@ -177,9 +188,14 @@ describe('ProjectModal', () => {
     );
 
     expect(document.body.style.overflow).toBe('hidden');
+    expect(document.body.style.overscrollBehavior).toBe('none');
+    expect(document.body.style.position).toBe('fixed');
+    expect(document.body.style.width).toBe('100%');
+    expect(document.documentElement.style.overscrollBehavior).toBe('none');
+    expect(document.body.dataset.projectModalOpen).toBe('true');
   });
 
-  it('restores body overflow when closed', () => {
+  it('restores document scroll styles when closed', () => {
     const { rerender } = renderWithTheme(
       <ProjectModal
         project={projectWithLinks}
@@ -189,6 +205,7 @@ describe('ProjectModal', () => {
     );
 
     expect(document.body.style.overflow).toBe('hidden');
+    expect(document.body.style.position).toBe('fixed');
 
     rerender(
       <ThemeProvider theme={theme}>
@@ -200,7 +217,44 @@ describe('ProjectModal', () => {
       </ThemeProvider>,
     );
 
+    expect(document.body.style.position).toBe('');
+    expect(document.body.style.top).toBe('');
+    expect(document.body.style.width).toBe('');
     expect(document.body.style.overflow).toBe('');
+    expect(document.body.style.overscrollBehavior).toBe('');
+    expect(document.documentElement.style.overscrollBehavior).toBe('');
+    expect(document.body.dataset.projectModalOpen).toBeUndefined();
+  });
+
+  it('holds the current page position and restores it on close', () => {
+    const scrollToSpy = vi.mocked(window.scrollTo);
+    Object.defineProperty(window, 'scrollY', {
+      configurable: true,
+      value: 2400,
+    });
+
+    const { rerender } = renderWithTheme(
+      <ProjectModal
+        project={projectWithLinks}
+        onClose={mockOnClose}
+        triggerRef={mockTriggerRef}
+      />,
+    );
+
+    expect(document.body.style.top).toBe('-2400px');
+    expect(scrollToSpy).not.toHaveBeenCalled();
+
+    rerender(
+      <ThemeProvider theme={theme}>
+        <ProjectModal
+          project={null}
+          onClose={mockOnClose}
+          triggerRef={mockTriggerRef}
+        />
+      </ThemeProvider>,
+    );
+
+    expect(scrollToSpy).toHaveBeenLastCalledWith(0, 2400);
   });
 
   it('focuses close button on open', () => {
