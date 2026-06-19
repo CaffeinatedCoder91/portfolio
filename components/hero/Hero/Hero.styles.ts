@@ -55,6 +55,16 @@ export const CanvasLayer = styled.canvas`
   width: 100%;
   height: 100%;
   z-index: 1;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black calc(100% - ${({ theme }) => getTheme(theme).space[8]}),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    black calc(100% - ${({ theme }) => getTheme(theme).space[8]}),
+    transparent 100%
+  );
 `;
 
 export const HeroInner = styled.div`
@@ -243,7 +253,7 @@ export const Glyph = styled.span<GlyphProps>`
 
 export const ScrollCueContainer = styled.div`
   position: absolute;
-  bottom: ${({ theme }) => getTheme(theme).space[3]};
+  bottom: ${({ theme }) => getTheme(theme).space[1]};
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;

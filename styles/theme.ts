@@ -77,7 +77,7 @@ export const theme = {
     frame: '7px',
     navOffset: '14px',
     navMaxWidth: '1120px',
-    navToggle: '42px',
+    navToggle: '32px',
     navDropdownOffset: '64px',
     navDropdownRadius: '20px',
     brandDot: '12px',
