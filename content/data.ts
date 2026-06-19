@@ -20,7 +20,7 @@ export const tagline =
 
 export const about = [
   "I'm a frontend engineer with 5+ years building scalable React applications for high-traffic platforms. I specialise in component architecture, TypeScript-first development, and shipping features that have real, measurable impact.",
-  "At Future Plc I own features from design through to production, and I built the shared component library that became the foundation for frontend work across the whole org. Lately I've gone deep on LLM-powered products, using tool-use APIs to ship AI features that are genuinely useful, not gimmicks.",
+  "At Future Plc I own features from design through to production, and I built the shared component library that became the foundation for frontend work across the whole org. Lately I've gone deep on LLM-enabled product features. One example: orchestrating tool-use APIs with flood and subsidence data to generate on-demand property risk scores for any UK postcode.",
   "My route here wasn't typical. A biology degree, a few years training baristas and coffee teams, then a hard pivot into code during the 2020 lockdowns. The throughline never changed: break messy problems down, and teach myself whatever the next one needs.",
   'Outside of code I embroider, build terrariums, and tend to 40 (and counting) houseplants. Apparently I like nurturing things that take patience and attention to detail.',
 ];
@@ -67,17 +67,29 @@ export const skills: Skill[] = [
   {
     name: 'State & data',
     color: 'mizu',
-    items: ['Context API', 'Redux', 'React Query', 'REST', 'OpenAPI', 'JWT/OAuth'],
+    items: [
+      'Context API',
+      'Redux',
+      'React Query',
+      'REST',
+      'OpenAPI',
+      'JWT/OAuth',
+    ],
   },
   {
     name: 'Testing & quality',
     color: 'matcha',
-    items: ['Jest', 'RTL', 'Cypress', 'Playwright', 'Vitest', 'TDD'],
+    items: ['Jest', 'RTL', 'Playwright', 'Vitest', 'TDD'],
   },
   {
     name: 'Performance',
     color: 'shu',
-    items: ['Core Web Vitals', 'Bundle analysis', 'Lazy loading', 'Code-splitting'],
+    items: [
+      'Core Web Vitals',
+      'Bundle analysis',
+      'Lazy loading',
+      'Code-splitting',
+    ],
   },
   {
     name: 'DevOps & tooling',
@@ -91,7 +103,8 @@ export const projects: Project[] = [
     title: 'Flow — AI-Powered Kanban',
     category: 'AI',
     image: '',
-    blurb: 'Full-stack kanban platform with an AI assistant that reads and mutates your board from plain English.',
+    blurb:
+      'Full-stack kanban platform with an AI assistant that reads and mutates your board from plain English.',
     tags: ['Next.js', 'TypeScript', 'Claude API', 'PostgreSQL', 'Docker'],
     live: 'https://flow-kanban-coral.vercel.app/',
     code: 'https://github.com/CaffeinatedCoder91/Flow-Kanban',
@@ -104,10 +117,11 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'dataground',
+    title: 'Dataground',
     category: 'AI',
     image: '',
-    blurb: 'Geospatial AI build for assessing address and location risk from natural-language prompts.',
+    blurb:
+      'Geospatial AI build for assessing address and location risk from natural-language prompts.',
     tags: ['Next.js', 'TypeScript', 'Claude API', 'Mapbox', 'Geospatial'],
     live: 'https://dataground-drab.vercel.app/',
     code: 'https://github.com/CaffeinatedCoder91/dataground',
@@ -119,26 +133,27 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'komorebi — Shopify Store',
+    title: 'Komorebi — Plant & Terrarium Shop',
     category: 'E-commerce',
     image: '',
-    blurb: 'Full-stack e-commerce platform showcasing React architecture and UX thinking, end to end.',
+    blurb:
+      'An e-commerce platform for rare plants and terrariums — full storefront, product catalogue and checkout flow.',
     tags: ['Next.js', 'React', 'TypeScript', 'Shopify API'],
     note: 'Private build · not yet deployed',
     points: [
-      'Complete Next.js storefront: product catalogue, product detail pages, cart and checkout flow.',
-      'Reusable component system: ProductCard, SpecimenTable, Accordion, AcquireButton.',
+      'Built a complete Next.js storefront for rare plants and terrariums: product catalogue, product detail pages, cart and checkout flow.',
+      'Reusable component system: ProductCard, SpecimenTable, Accordion, AcquireButton — designed around plant/terrarium product attributes.',
       'Mobile-first responsive design; integrated Shopify and payment systems.',
       'Security audit and hardening: environment variables, HTTP headers, form security, validation and error messaging.',
     ],
   },
   {
-    title: 'data-quality-checker',
+    title: 'Data Quality Checker',
     category: 'Tooling',
     image: '',
-    blurb: 'A React app with a webhook backend and full test suite — shipped production-ready in one week.',
+    blurb:
+      'A React app with a webhook backend and full test suite — shipped production-ready in one week.',
     tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Vitest', 'n8n'],
-    live: 'https://data-quality-checker-gamma.vercel.app/',
     code: 'https://github.com/CaffeinatedCoder91/data-quality-checker',
     points: [
       'React frontend with file upload, state management, error handling and validation flows.',
@@ -148,10 +163,11 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'vesper',
+    title: 'Vesper',
     category: 'AI',
     image: '',
-    blurb: 'A personal PWA where you speak your thoughts freely and an AI companion responds warmly.',
+    blurb:
+      'A personal PWA where you speak your thoughts freely and an AI companion responds warmly.',
     tags: ['TypeScript', 'PWA', 'AI'],
     note: 'Private build',
     points: [
@@ -163,7 +179,8 @@ export const projects: Project[] = [
     title: 'In Loving Memory — Maseline Joseph',
     category: 'Personal',
     image: '',
-    blurb: 'A memorial site built for my grandmother. A quiet, respectful space for family to gather service details, RSVP and remember her life.',
+    blurb:
+      'A memorial site built for my grandmother. A quiet, respectful space for family to gather service details, RSVP and remember her life.',
     tags: ['Next.js', 'TypeScript', 'Vercel'],
     live: 'https://maselinejoseph.vercel.app/',
     points: [
@@ -233,8 +250,8 @@ export const education: Education[] = [
 ];
 
 export const contact = {
-  head: 'Let\'s build something',
-  sub: "Got a role, a project, or just want to say hi? My inbox is open.",
+  head: "Let's build something",
+  sub: 'Got a role, a project, or just want to say hi? My inbox is open.',
   items: [
     {
       kind: 'Email',
