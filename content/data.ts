@@ -119,7 +119,7 @@ export const projects: Project[] = [
   {
     title: 'Dataground',
     category: 'AI',
-    image: '',
+    image: '/images/dataground.webp',
     blurb:
       'Geospatial AI build for assessing address and location risk from natural-language prompts.',
     tags: ['Next.js', 'TypeScript', 'Claude API', 'Mapbox', 'Geospatial'],
@@ -180,7 +180,7 @@ export const projects: Project[] = [
   {
     title: 'In Loving Memory — Maseline Joseph',
     category: 'Personal',
-    image: '',
+    image: '/images/maseline-joseph.webp',
     blurb:
       'A memorial site built for my grandmother. A quiet, respectful space for family to gather service details, RSVP and remember her life.',
     tags: ['Next.js', 'TypeScript', 'Vercel'],

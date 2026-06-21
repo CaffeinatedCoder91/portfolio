@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: 'Joanna Joseph',
     images: [
       {
-        url: '/og.png',
+        url: '/images/og.png',
         width: 1200,
         height: 630,
         alt: 'Joanna Joseph · Frontend Engineer',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Joanna Joseph · Frontend Engineer',
     description: 'AI-native frontend engineer building LLM-powered products. React, TypeScript, Next.js.',
-    images: ['/og.png'],
+    images: ['/images/og.png'],
     creator: '@joannamjoseph',
   },
   robots: {
