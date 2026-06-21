@@ -10,12 +10,12 @@ const targets = [
   {
     name: 'dataground',
     url: 'https://dataground-drab.vercel.app/',
-    output: path.join(root, 'public/images/dataground/dataground.webp'),
+    output: path.join(root, 'public/images/dataground.webp'),
   },
   {
     name: 'In Loving Memory',
     url: 'https://maselinejoseph.vercel.app/',
-    output: path.join(root, 'public/images/maseline-joseph/maseline-joseph.webp'),
+    output: path.join(root, 'public/images/maseline-joseph.webp'),
   },
 ]
 

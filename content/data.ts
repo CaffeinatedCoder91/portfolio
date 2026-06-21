@@ -194,14 +194,7 @@ export const projects: Project[] = [
   {
     title: 'In Loving Memory: Maseline Joseph',
     category: 'Personal',
-    image: '/images/maseline-joseph/maseline-joseph.webp',
-    images: [
-      '/images/maseline-joseph/maseline-joseph.webp',
-      '/images/maseline-joseph/maseline-joseph-hero.webp',
-      '/images/maseline-joseph/maseline-joseph-service.webp',
-      '/images/maseline-joseph/maseline-joseph-location.webp',
-      '/images/maseline-joseph/maseline-joseph-rsvp.webp',
-    ],
+    image: '/images/maseline-joseph.webp',
     blurb:
       'A memorial site built for my grandmother. A quiet, respectful space for family to gather service details, RSVP and remember her life.',
     tags: ['Next.js', 'TypeScript', 'Vercel'],
