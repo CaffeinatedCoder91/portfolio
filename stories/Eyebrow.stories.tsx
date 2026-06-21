@@ -50,12 +50,12 @@ export const AllColors: Story = {
   args: { children: 'Eyebrow' },
   render: () => (
     <Stack>
-      <Eyebrow $color="kincha">Kincha — Ochre</Eyebrow>
-      <Eyebrow $color="ai">AI — Indigo</Eyebrow>
-      <Eyebrow $color="shu">Shu — Vermilion</Eyebrow>
-      <Eyebrow $color="matcha">Matcha — Moss</Eyebrow>
-      <Eyebrow $color="mizu">Mizu — Water Blue</Eyebrow>
-      <Eyebrow $color="fuji">Fuji — Wisteria</Eyebrow>
+      <Eyebrow $color="kincha">Kincha: Ochre</Eyebrow>
+      <Eyebrow $color="ai">AI: Indigo</Eyebrow>
+      <Eyebrow $color="shu">Shu: Vermilion</Eyebrow>
+      <Eyebrow $color="matcha">Matcha: Moss</Eyebrow>
+      <Eyebrow $color="mizu">Mizu: Water Blue</Eyebrow>
+      <Eyebrow $color="fuji">Fuji: Wisteria</Eyebrow>
       <Eyebrow $number="001">ABOUT</Eyebrow>
     </Stack>
   ),

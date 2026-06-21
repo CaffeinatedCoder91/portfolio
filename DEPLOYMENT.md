@@ -1,4 +1,4 @@
-# DEPLOYMENT.md — Pre-launch and deployment guide
+# DEPLOYMENT.md: Pre-launch and deployment guide
 
 **Version:** 1.0  
 **Last updated:** June 2026

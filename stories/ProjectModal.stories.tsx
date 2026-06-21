@@ -16,13 +16,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const mockProject: Project = {
-  title: 'Flow — AI-Powered Kanban',
+  title: 'Flow: AI-Powered Kanban',
   category: 'AI',
   blurb: 'Full-stack kanban platform with an AI assistant that reads and mutates your board from plain English.',
   tags: ['Next.js', 'TypeScript', 'Claude API', 'PostgreSQL', 'Docker'],
   points: [
     'Built end to end: React frontend, Node serverless API (15+ endpoints), Postgres via Supabase with row-level security.',
-    'AI assistant built on Claude tool-use API — autonomously creates, updates and reorders tasks from natural language.',
+    'AI assistant built on Claude tool-use API, autonomously creating, updating and reordering tasks from natural language.',
     'Discrete AI agents: standup narrative generator, deadline risk scanner, task splitter, smart reschedule, duplicate detector.',
     'AI pipeline parses free text and uploaded files (.txt/.pdf/.docx) into structured task objects.',
     'Shipped with full test coverage, Supabase Auth, Redis rate limiting and Sentry observability.',
@@ -55,7 +55,7 @@ export const Closed: Story = {
 export const WithoutLinks: Story = {
   args: {
     project: {
-      title: 'komorebi — Shopify Store',
+      title: 'komorebi: Shopify Store',
       category: 'E-commerce',
       blurb: 'Full-stack e-commerce platform showcasing React architecture and UX thinking, end to end.',
       tags: ['Next.js', 'React', 'TypeScript', 'Shopify API'],

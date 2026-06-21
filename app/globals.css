@@ -1,4 +1,4 @@
-/* Reset only — all other styles via GlobalStyles.ts */
+/* Reset only; all other styles via GlobalStyles.ts */
 *,
 *::before,
 *::after {

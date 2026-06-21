@@ -71,7 +71,7 @@ const InkCanvas = () => {
 
     resizeCanvas();
 
-    // Watch the canvas element directly — it mirrors the hero section's size.
+    // Watch the canvas element directly; it mirrors the hero section's size.
     // This fires after web fonts settle or the photo finishes loading and the
     // hero reaches its final height, keeping the bitmap in sync.
     const observer = new ResizeObserver(resizeCanvas);
