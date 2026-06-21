@@ -147,21 +147,23 @@ export const projects: Project[] = [
       'Security audit and hardening: environment variables, HTTP headers, form security, validation and error messaging.',
     ],
   },
-  {
-    title: 'Data Quality Checker',
-    category: 'Tooling',
-    image: '',
-    blurb:
-      'A React app with a webhook backend and full test suite — shipped production-ready in one week.',
-    tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Vitest', 'n8n'],
-    code: 'https://github.com/CaffeinatedCoder91/data-quality-checker',
-    points: [
-      'React frontend with file upload, state management, error handling and validation flows.',
-      'Webhook integration for external data processing; handled response-format transformation.',
-      'Comprehensive Vitest suite covering all paths and edge cases.',
-      'Shipped a production-ready feature with full coverage in a single week.',
-    ],
-  },
+  // PAUSED — n8n backend hosting on hold, restore when
+  // the webhook service is back online
+  // {
+  //   title: 'Data Quality Checker',
+  //   category: 'Tooling',
+  //   image: '',
+  //   blurb:
+  //     'A React app with a webhook backend and full test suite — shipped production-ready in one week.',
+  //   tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Vitest', 'n8n'],
+  //   code: 'https://github.com/CaffeinatedCoder91/data-quality-checker',
+  //   points: [
+  //     'React frontend with file upload, state management, error handling and validation flows.',
+  //     'Webhook integration for external data processing; handled response-format transformation.',
+  //     'Comprehensive Vitest suite covering all paths and edge cases.',
+  //     'Shipped a production-ready feature with full coverage in a single week.',
+  //   ],
+  // },
   {
     title: 'Vesper',
     category: 'AI',
@@ -183,6 +185,7 @@ export const projects: Project[] = [
       'A memorial site built for my grandmother. A quiet, respectful space for family to gather service details, RSVP and remember her life.',
     tags: ['Next.js', 'TypeScript', 'Vercel'],
     live: 'https://maselinejoseph.vercel.app/',
+    code: 'https://github.com/CaffeinatedCoder91/grandma',
     points: [
       'Designed and built a full memorial site end to end — service details, directions, RSVP form, flower preferences and a tribute section.',
       'Mobile-first and accessible throughout — family members of all ages and abilities needed to be able to use it easily.',
