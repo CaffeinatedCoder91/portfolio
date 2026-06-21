@@ -92,7 +92,7 @@ const Hero = ({ inkCanvas }: Props) => {
           <PhotoAccent />
           <PhotoWrapper>
             <PhotoImage
-              src="/joanna-photo.jpg"
+              src="/images/joanna-photo.jpg"
               alt="Joanna Joseph"
               width={600}
               height={600}
