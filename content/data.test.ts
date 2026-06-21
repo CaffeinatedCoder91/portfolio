@@ -10,8 +10,8 @@ const isValidTokenColor = (color: unknown): color is TokenColor => {
 
 describe('content/data', () => {
   describe('Projects', () => {
-    it('has 6 projects', () => {
-      expect(data.projects).toHaveLength(6);
+    it('has 5 active projects', () => {
+      expect(data.projects).toHaveLength(5);
     });
 
     it('every project has required fields', () => {
@@ -72,6 +72,13 @@ describe('content/data', () => {
       expect(komorebi?.note).toBeDefined();
       expect(komorebi?.live).toBeUndefined();
       expect(komorebi?.code).toBeUndefined();
+    });
+
+    it('memorial project has live and code URLs', () => {
+      const memorial = data.projects.find((p) => p.title === 'In Loving Memory — Maseline Joseph');
+      expect(memorial).toBeDefined();
+      expect(memorial?.live).toBe('https://maselinejoseph.vercel.app/');
+      expect(memorial?.code).toBe('https://github.com/CaffeinatedCoder91/grandma');
     });
 
     it('Frontend Engineer role has 5+ points', () => {
