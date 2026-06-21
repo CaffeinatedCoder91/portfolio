@@ -356,6 +356,79 @@ export const ModalImageHeader = styled.div<{ $color: TokenColor; $hasImage: bool
   }
 `;
 
+export const ModalImageControl = styled.button<{ $side: 'left' | 'right' }>`
+  position: absolute;
+  top: 50%;
+  ${({ $side, theme }) =>
+    $side === 'left'
+      ? css`
+          left: ${getTheme(theme).sizes.modalGalleryControlInset};
+        `
+      : css`
+          right: ${getTheme(theme).sizes.modalGalleryControlInset};
+        `}
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: ${({ theme }) => getTheme(theme).sizes.modalGalleryControlSize};
+  height: ${({ theme }) => getTheme(theme).sizes.modalGalleryControlSize};
+  border-radius: ${({ theme }) => getTheme(theme).radius.full};
+  border: ${({ theme }) => getTheme(theme).border};
+  background: ${({ theme }) => getTheme(theme).colors.paper2};
+  color: ${({ theme }) => getTheme(theme).colors.ink};
+  font-family: ${({ theme }) => getTheme(theme).fonts.mono};
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 2;
+`;
+
+export const ModalImageCount = styled.span`
+  position: absolute;
+  left: 50%;
+  bottom: ${({ theme }) => getTheme(theme).sizes.modalGalleryCountBottom};
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: ${({ theme }) => getTheme(theme).fonts.mono};
+  font-size: ${({ theme }) => getTheme(theme).sizes.projectStatusFont};
+  font-weight: 700;
+  color: ${({ theme }) => getTheme(theme).colors.ink};
+  background: ${({ theme }) => getTheme(theme).colors.paper2};
+  border: ${({ theme }) => getTheme(theme).border};
+  border-radius: ${({ theme }) => getTheme(theme).radius.full};
+  padding: ${({ theme }) => getTheme(theme).sizes.modalGalleryCountPadding};
+`;
+
+export const ModalThumbnailList = styled.div`
+  display: flex;
+  gap: ${({ theme }) => getTheme(theme).sizes.modalThumbnailGap};
+  padding: ${({ theme }) => getTheme(theme).space[2]} ${({ theme }) => getTheme(theme).space[5]} 0;
+  overflow-x: auto;
+  background: ${({ theme }) => getTheme(theme).colors.paper2};
+`;
+
+export const ModalThumbnailButton = styled.button<{ $active: boolean }>`
+  position: relative;
+  flex: 0 0 auto;
+  width: ${({ theme }) => getTheme(theme).sizes.modalThumbnailSize};
+  height: ${({ theme }) => getTheme(theme).sizes.modalThumbnailSize};
+  box-sizing: border-box;
+  overflow: hidden;
+  border: ${({ $active, theme }) =>
+    $active ? getTheme(theme).sizes.modalThumbnailBorder : getTheme(theme).borderSubtle};
+  border-radius: ${({ theme }) => getTheme(theme).radius.sm};
+  background: ${({ theme }) => getTheme(theme).colors.paper};
+  cursor: pointer;
+  padding: 0;
+  opacity: ${({ $active }) => ($active ? 1 : 0.72)};
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+`;
+
 export const ModalCloseButton = styled.button`
   position: absolute;
   top: ${({ theme }) => getTheme(theme).space[3]};

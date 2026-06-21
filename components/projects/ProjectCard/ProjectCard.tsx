@@ -62,6 +62,7 @@ const ProjectCard = forwardRef<HTMLElement, Props>(
             src={project.image}
             alt={`${project.title} preview`}
             fill
+            sizes="(max-width: 820px) 90vw, 33vw"
             priority={priority}
           />
         ) : (

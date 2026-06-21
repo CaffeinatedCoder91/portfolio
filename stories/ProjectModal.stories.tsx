@@ -16,19 +16,25 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const mockProject: Project = {
-  title: 'Flow: AI-Powered Kanban',
-  category: 'AI',
-  blurb: 'Full-stack kanban platform with an AI assistant that reads and mutates your board from plain English.',
-  tags: ['Next.js', 'TypeScript', 'Claude API', 'PostgreSQL', 'Docker'],
-  points: [
-    'Built end to end: React frontend, Node serverless API (15+ endpoints), Postgres via Supabase with row-level security.',
-    'AI assistant built on Claude tool-use API, autonomously creating, updating and reordering tasks from natural language.',
-    'Discrete AI agents: standup narrative generator, deadline risk scanner, task splitter, smart reschedule, duplicate detector.',
-    'AI pipeline parses free text and uploaded files (.txt/.pdf/.docx) into structured task objects.',
-    'Shipped with full test coverage, Supabase Auth, Redis rate limiting and Sentry observability.',
+  title: 'Komorebi: Plant & Terrarium Shop',
+  category: 'E-commerce',
+  image: '/images/komorebi/komorebi-listing.webp',
+  images: [
+    '/images/komorebi/komorebi-listing.webp',
+    '/images/komorebi/komorebi.webp',
+    '/images/komorebi/komorebi-product.webp',
+    '/images/komorebi/komorebi-custom-2.webp',
+    '/images/komorebi/komorebi-custom-3.webp',
   ],
-  live: 'https://flow-kanban-coral.vercel.app/',
-  code: 'https://github.com/CaffeinatedCoder91/Flow-Kanban',
+  blurb: 'An e-commerce platform for rare plants and terrariums, with a full storefront, product catalogue and checkout flow.',
+  tags: ['Next.js', 'React', 'TypeScript', 'Shopify API'],
+  note: 'Private build · not yet deployed',
+  points: [
+    'Built a complete Next.js storefront for rare plants and terrariums: product catalogue, product detail pages, cart and checkout flow.',
+    'Reusable component system: ProductCard, SpecimenTable, Accordion, AcquireButton, designed around plant/terrarium product attributes.',
+    'Mobile-first responsive design; integrated Shopify and payment systems.',
+    'Security audit and hardening: environment variables, HTTP headers, form security, validation and error messaging.',
+  ],
 };
 
 const triggerRef = React.createRef<HTMLElement>();
@@ -37,7 +43,7 @@ const handleClose = () => {};
 export const Open: Story = {
   args: {
     project: mockProject,
-    color: 'ai',
+    color: 'shu',
     onClose: handleClose,
     triggerRef,
   },
@@ -54,19 +60,30 @@ export const Closed: Story = {
 
 export const WithoutLinks: Story = {
   args: {
-    project: {
-      title: 'komorebi: Shopify Store',
-      category: 'E-commerce',
-      blurb: 'Full-stack e-commerce platform showcasing React architecture and UX thinking, end to end.',
-      tags: ['Next.js', 'React', 'TypeScript', 'Shopify API'],
-      note: 'Private build · not yet deployed',
-      points: [
-        'Complete Next.js storefront: product catalogue, product detail pages, cart and checkout flow.',
-        'Reusable component system: ProductCard, SpecimenTable, Accordion, AcquireButton.',
-        'Mobile-first responsive design; integrated Shopify and payment systems.',
-      ],
-    } as Project,
+    project: mockProject,
     color: 'shu',
+    onClose: handleClose,
+    triggerRef,
+  },
+};
+
+export const SingleImage: Story = {
+  args: {
+    project: {
+      title: 'Dataground',
+      category: 'AI',
+      image: '/images/dataground/dataground.webp',
+      blurb: 'Geospatial AI build for assessing address and location risk from natural-language prompts.',
+      tags: ['Next.js', 'TypeScript', 'Claude API', 'Mapbox', 'Geospatial'],
+      live: 'https://dataground-drab.vercel.app/',
+      code: 'https://github.com/CaffeinatedCoder91/dataground',
+      points: [
+        'Built a geocoding workflow that turns address input into structured location data.',
+        'Integrated the Claude API to interpret user prompts and generate risk assessment summaries.',
+        'Combined geospatial signals with AI-assisted assessment logic to surface location risk clearly.',
+      ],
+    },
+    color: 'ai',
     onClose: handleClose,
     triggerRef,
   },

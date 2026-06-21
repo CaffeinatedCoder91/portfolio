@@ -1,7 +1,7 @@
 'use client';
 
 // Client component: manages modal focus, keyboard listeners, and body scroll lock.
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Button from '@/components/ui/Button';
@@ -11,6 +11,10 @@ import {
   ModalBackdrop,
   ModalPanel,
   ModalImageHeader,
+  ModalImageControl,
+  ModalImageCount,
+  ModalThumbnailButton,
+  ModalThumbnailList,
   ModalCloseButton,
   ModalContent,
   ModalCategoryTag,
@@ -28,12 +32,21 @@ interface Props {
   triggerRef: React.RefObject<HTMLElement | null>;
 }
 
+interface ImageState {
+  projectTitle: string | null;
+  index: number;
+}
+
 const focusableSelector = 'button, a, [tabindex]:not([tabindex="-1"])';
 const modalOpenDataKey = 'projectModalOpen';
 
 const ProjectModal = ({ project, color = 'ai', onClose, triggerRef }: Props) => {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
+  const [imageState, setImageState] = useState<ImageState>({
+    projectTitle: null,
+    index: 0,
+  });
 
   const isOpen = project !== null;
 
@@ -128,6 +141,39 @@ const ProjectModal = ({ project, color = 'ai', onClose, triggerRef }: Props) => 
 
   if (!project || typeof document === 'undefined') return null;
 
+  const imageSources =
+    project.images && project.images.length > 0
+      ? project.images
+      : project.image
+        ? [project.image]
+        : [];
+  const activeImageIndex = imageState.projectTitle === project.title ? imageState.index : 0;
+  const safeActiveImageIndex =
+    imageSources.length > 0 ? Math.min(activeImageIndex, imageSources.length - 1) : 0;
+  const activeImage = imageSources[safeActiveImageIndex];
+  const hasImages = imageSources.length > 0;
+  const hasGallery = imageSources.length > 1;
+
+  const showPreviousImage = () => {
+    setImageState((current) => {
+      const currentIndex = current.projectTitle === project.title ? current.index : 0;
+      return {
+        projectTitle: project.title,
+        index: currentIndex === 0 ? imageSources.length - 1 : currentIndex - 1,
+      };
+    });
+  };
+
+  const showNextImage = () => {
+    setImageState((current) => {
+      const currentIndex = current.projectTitle === project.title ? current.index : 0;
+      return {
+        projectTitle: project.title,
+        index: currentIndex === imageSources.length - 1 ? 0 : currentIndex + 1,
+      };
+    });
+  };
+
   return createPortal(
     <ModalBackdrop $isOpen={isOpen} onClick={handleBackdropClick}>
       <ModalPanel
@@ -138,18 +184,65 @@ const ProjectModal = ({ project, color = 'ai', onClose, triggerRef }: Props) => 
         aria-modal="true"
         aria-labelledby="modal-title"
       >
-        <ModalImageHeader $color={color} $hasImage={Boolean(project.image)}>
-          {project.image ? (
+        <ModalImageHeader $color={color} $hasImage={hasImages}>
+          {activeImage ? (
             <Image
-              src={project.image}
-              alt={`${project.title} preview`}
+              src={activeImage}
+              alt={`${project.title} screenshot ${safeActiveImageIndex + 1}`}
               fill
+              sizes="(max-width: 820px) 90vw, 640px"
               priority
             />
           ) : (
             <span>{project.category}</span>
           )}
+          {hasGallery && (
+            <>
+              <ModalImageControl
+                type="button"
+                $side="left"
+                onClick={showPreviousImage}
+                aria-label="Previous screenshot"
+              >
+                &lt;
+              </ModalImageControl>
+              <ModalImageControl
+                type="button"
+                $side="right"
+                onClick={showNextImage}
+                aria-label="Next screenshot"
+              >
+                &gt;
+              </ModalImageControl>
+              <ModalImageCount aria-live="polite">
+                {safeActiveImageIndex + 1} / {imageSources.length}
+              </ModalImageCount>
+            </>
+          )}
         </ModalImageHeader>
+
+        {hasGallery && (
+          <ModalThumbnailList aria-label={`${project.title} screenshots`}>
+            {imageSources.map((image, index) => (
+              <ModalThumbnailButton
+                key={image}
+                type="button"
+                $active={safeActiveImageIndex === index}
+                onClick={() => setImageState({ projectTitle: project.title, index })}
+                aria-label={`Show screenshot ${index + 1}`}
+                aria-pressed={safeActiveImageIndex === index}
+              >
+                <Image
+                  src={image}
+                  alt=""
+                  fill
+                  sizes="56px"
+                  aria-hidden="true"
+                />
+              </ModalThumbnailButton>
+            ))}
+          </ModalThumbnailList>
+        )}
 
         <ModalCloseButton
           ref={closeButtonRef}

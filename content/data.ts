@@ -119,7 +119,14 @@ export const projects: Project[] = [
   {
     title: 'Dataground',
     category: 'AI',
-    image: '/images/dataground.webp',
+    image: '/images/dataground/dataground.webp',
+    images: [
+      '/images/dataground/dataground.webp',
+      '/images/dataground/dataground-home.webp',
+      '/images/dataground/dataground-postcode.webp',
+      '/images/dataground/dataground-risk-w14-8rr.webp',
+      '/images/dataground/dataground-risk-w9-1qe.webp',
+    ],
     blurb:
       'Geospatial AI build for assessing address and location risk from natural-language prompts.',
     tags: ['Next.js', 'TypeScript', 'Claude API', 'Mapbox', 'Geospatial'],
@@ -135,7 +142,14 @@ export const projects: Project[] = [
   {
     title: 'Komorebi: Plant & Terrarium Shop',
     category: 'E-commerce',
-    image: '/images/komorebi.webp',
+    image: '/images/komorebi/komorebi-listing.webp',
+    images: [
+      '/images/komorebi/komorebi-listing.webp',
+      '/images/komorebi/komorebi.webp',
+      '/images/komorebi/komorebi-product.webp',
+      '/images/komorebi/komorebi-custom-2.webp',
+      '/images/komorebi/komorebi-custom-3.webp',
+    ],
     blurb:
       'An e-commerce platform for rare plants and terrariums, with a full storefront, product catalogue and checkout flow.',
     tags: ['Next.js', 'React', 'TypeScript', 'Shopify API'],
@@ -180,7 +194,14 @@ export const projects: Project[] = [
   {
     title: 'In Loving Memory: Maseline Joseph',
     category: 'Personal',
-    image: '/images/maseline-joseph.webp',
+    image: '/images/maseline-joseph/maseline-joseph.webp',
+    images: [
+      '/images/maseline-joseph/maseline-joseph.webp',
+      '/images/maseline-joseph/maseline-joseph-hero.webp',
+      '/images/maseline-joseph/maseline-joseph-service.webp',
+      '/images/maseline-joseph/maseline-joseph-location.webp',
+      '/images/maseline-joseph/maseline-joseph-rsvp.webp',
+    ],
     blurb:
       'A memorial site built for my grandmother. A quiet, respectful space for family to gather service details, RSVP and remember her life.',
     tags: ['Next.js', 'TypeScript', 'Vercel'],

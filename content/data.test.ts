@@ -69,7 +69,9 @@ describe('content/data', () => {
     it('komorebi has note field and no live or code URLs', () => {
       const komorebi = data.projects.find((p) => p.title === 'Komorebi: Plant & Terrarium Shop');
       expect(komorebi).toBeDefined();
-      expect(komorebi?.image).toBe('/images/komorebi.webp');
+      expect(komorebi?.image).toBe('/images/komorebi/komorebi-listing.webp');
+      expect(komorebi?.images).toHaveLength(5);
+      expect(komorebi?.images?.[0]).toBe('/images/komorebi/komorebi-listing.webp');
       expect(komorebi?.note).toBeDefined();
       expect(komorebi?.live).toBeUndefined();
       expect(komorebi?.code).toBeUndefined();

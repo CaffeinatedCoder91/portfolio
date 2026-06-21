@@ -9,6 +9,8 @@ import { projects } from '@/content/data';
 import { theme } from '@/styles/theme';
 
 const projectWithLinks = projects.find((project) => project.live && project.code) ?? projects[0];
+const projectWithGallery =
+  projects.find((project) => project.images && project.images.length > 1) ?? projects[0];
 
 const renderWithTheme = (component: React.ReactElement) => {
   return render(
@@ -115,6 +117,80 @@ describe('ProjectModal', () => {
     expect(links).toHaveLength(2);
     expect(links[0]).toHaveAttribute('href', projectWithLinks.live);
     expect(links[1]).toHaveAttribute('href', projectWithLinks.code);
+  });
+
+  it('renders gallery controls when multiple images are available', () => {
+    renderWithTheme(
+      <ProjectModal
+        project={projectWithGallery}
+        onClose={mockOnClose}
+        triggerRef={mockTriggerRef}
+      />,
+    );
+
+    expect(screen.getByRole('button', { name: 'Previous screenshot' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Next screenshot' })).toBeInTheDocument();
+    expect(screen.getByText(`1 / ${projectWithGallery.images?.length ?? 1}`)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Show screenshot 1' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+  });
+
+  it('moves through gallery images with next and previous controls', async () => {
+    const user = userEvent.setup();
+    renderWithTheme(
+      <ProjectModal
+        project={projectWithGallery}
+        onClose={mockOnClose}
+        triggerRef={mockTriggerRef}
+      />,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Next screenshot' }));
+    expect(screen.getByText(`2 / ${projectWithGallery.images?.length ?? 1}`)).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Previous screenshot' }));
+    expect(screen.getByText(`1 / ${projectWithGallery.images?.length ?? 1}`)).toBeInTheDocument();
+
+    await user.click(screen.getByRole('button', { name: 'Previous screenshot' }));
+    expect(
+      screen.getByText(
+        `${projectWithGallery.images?.length ?? 1} / ${projectWithGallery.images?.length ?? 1}`,
+      ),
+    ).toBeInTheDocument();
+  });
+
+  it('selects a gallery image from thumbnails', async () => {
+    const user = userEvent.setup();
+    renderWithTheme(
+      <ProjectModal
+        project={projectWithGallery}
+        onClose={mockOnClose}
+        triggerRef={mockTriggerRef}
+      />,
+    );
+
+    await user.click(screen.getByRole('button', { name: 'Show screenshot 3' }));
+
+    expect(screen.getByText(`3 / ${projectWithGallery.images?.length ?? 1}`)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Show screenshot 3' })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    );
+  });
+
+  it('does not render gallery controls when only one image is available', () => {
+    renderWithTheme(
+      <ProjectModal
+        project={{ ...projectWithLinks, image: '/images/example.webp' }}
+        onClose={mockOnClose}
+        triggerRef={mockTriggerRef}
+      />,
+    );
+
+    expect(screen.queryByRole('button', { name: 'Previous screenshot' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Next screenshot' })).not.toBeInTheDocument();
   });
 
   it('calls onClose when close button is clicked', () => {
