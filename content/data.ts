@@ -100,7 +100,7 @@ export const skills: Skill[] = [
 
 export const projects: Project[] = [
   {
-    title: 'Flow — AI-Powered Kanban',
+    title: 'Flow: AI-Powered Kanban',
     category: 'AI',
     image: '',
     blurb:
@@ -110,7 +110,7 @@ export const projects: Project[] = [
     code: 'https://github.com/CaffeinatedCoder91/Flow-Kanban',
     points: [
       'Built end to end: React frontend, Node serverless API (15+ endpoints), Postgres via Supabase with row-level security.',
-      'AI assistant built on Claude tool-use API — autonomously creates, updates and reorders tasks from natural language.',
+      'AI assistant built on Claude tool-use API, autonomously creating, updating and reordering tasks from natural language.',
       'Discrete AI agents: standup narrative generator, deadline risk scanner, task splitter, smart reschedule, duplicate detector.',
       'AI pipeline parses free text and uploaded files (.txt/.pdf/.docx) into structured task objects.',
       'Shipped with full test coverage, Supabase Auth, Redis rate limiting and Sentry observability.',
@@ -119,7 +119,14 @@ export const projects: Project[] = [
   {
     title: 'Dataground',
     category: 'AI',
-    image: '/images/dataground.webp',
+    image: '/images/dataground/dataground.webp',
+    images: [
+      '/images/dataground/dataground.webp',
+      '/images/dataground/dataground-home.webp',
+      '/images/dataground/dataground-postcode.webp',
+      '/images/dataground/dataground-risk-w14-8rr.webp',
+      '/images/dataground/dataground-risk-w9-1qe.webp',
+    ],
     blurb:
       'Geospatial AI build for assessing address and location risk from natural-language prompts.',
     tags: ['Next.js', 'TypeScript', 'Claude API', 'Mapbox', 'Geospatial'],
@@ -133,28 +140,35 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Komorebi — Plant & Terrarium Shop',
+    title: 'Komorebi: Plant & Terrarium Shop',
     category: 'E-commerce',
-    image: '',
+    image: '/images/komorebi/komorebi-listing.webp',
+    images: [
+      '/images/komorebi/komorebi-listing.webp',
+      '/images/komorebi/komorebi.webp',
+      '/images/komorebi/komorebi-product.webp',
+      '/images/komorebi/komorebi-custom-2.webp',
+      '/images/komorebi/komorebi-custom-3.webp',
+    ],
     blurb:
-      'An e-commerce platform for rare plants and terrariums — full storefront, product catalogue and checkout flow.',
+      'An e-commerce platform for rare plants and terrariums, with a full storefront, product catalogue and checkout flow.',
     tags: ['Next.js', 'React', 'TypeScript', 'Shopify API'],
     note: 'Private build · not yet deployed',
     points: [
       'Built a complete Next.js storefront for rare plants and terrariums: product catalogue, product detail pages, cart and checkout flow.',
-      'Reusable component system: ProductCard, SpecimenTable, Accordion, AcquireButton — designed around plant/terrarium product attributes.',
+      'Reusable component system: ProductCard, SpecimenTable, Accordion, AcquireButton, designed around plant/terrarium product attributes.',
       'Mobile-first responsive design; integrated Shopify and payment systems.',
       'Security audit and hardening: environment variables, HTTP headers, form security, validation and error messaging.',
     ],
   },
-  // PAUSED — n8n backend hosting on hold, restore when
+  // PAUSED: n8n backend hosting on hold, restore when
   // the webhook service is back online
   // {
   //   title: 'Data Quality Checker',
   //   category: 'Tooling',
   //   image: '',
   //   blurb:
-  //     'A React app with a webhook backend and full test suite — shipped production-ready in one week.',
+  //     'A React app with a webhook backend and full test suite, shipped production-ready in one week.',
   //   tags: ['React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Vitest', 'n8n'],
   //   code: 'https://github.com/CaffeinatedCoder91/data-quality-checker',
   //   points: [
@@ -178,7 +192,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'In Loving Memory — Maseline Joseph',
+    title: 'In Loving Memory: Maseline Joseph',
     category: 'Personal',
     image: '/images/maseline-joseph.webp',
     blurb:
@@ -187,9 +201,9 @@ export const projects: Project[] = [
     live: 'https://maselinejoseph.vercel.app/',
     code: 'https://github.com/CaffeinatedCoder91/grandma',
     points: [
-      'Designed and built a full memorial site end to end — service details, directions, RSVP form, flower preferences and a tribute section.',
-      'Mobile-first and accessible throughout — family members of all ages and abilities needed to be able to use it easily.',
-      'Shipped quickly and with care — this was personal, not professional, and the deadline was real.',
+      'Designed and built a full memorial site end to end, with service details, directions, RSVP form, flower preferences and a tribute section.',
+      'Mobile-first and accessible throughout, because family members of all ages and abilities needed to be able to use it easily.',
+      'Shipped quickly and with care, because this was personal, not professional, and the deadline was real.',
       'A reminder that the best reason to build something is for the people you love.',
     ],
   },
@@ -202,11 +216,11 @@ export const experience: Role[] = [
     role: 'Frontend Engineer',
     org: 'Future Plc · London (Remote)',
     points: [
-      'Designed and maintained a 96-component shared React library serving 6+ storefronts — became the foundation for all frontend development across the organisation.',
+      'Designed and maintained a 96-component shared React library serving 6+ storefronts, becoming the foundation for all frontend development across the organisation.',
       'Owned e-commerce features end to end: product discovery, shopping cart with persistent state, multi-step checkout flows, payment integration, and search with filtering.',
       'Reduced API calls by 80–90% through debouncing and intelligent caching; improved Core Web Vitals across platforms, contributing to better SEO.',
       'Built a complex campaign management system with dynamic forms and real-time preview, requiring sophisticated state management and careful data flow design.',
-      'Implemented WCAG 2.1 AA accessibility standards across all components — proper ARIA labels, semantic HTML, keyboard navigation.',
+      'Implemented WCAG 2.1 AA accessibility standards across all components: proper ARIA labels, semantic HTML and keyboard navigation.',
       'Conducted code reviews emphasising quality, accessibility, and maintainability.',
       'Built a working implementation using the Loqate API and AI-assisted development to explore address lookup and validation workflows.',
     ],

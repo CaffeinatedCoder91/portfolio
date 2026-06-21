@@ -1,4 +1,4 @@
-# DEPLOYMENT.md — Pre-launch and deployment guide
+# DEPLOYMENT.md: Pre-launch and deployment guide
 
 **Version:** 1.0  
 **Last updated:** June 2026
@@ -17,7 +17,7 @@ Run this checklist before pushing to production:
   - Profile image present
   - Optimized for web
   
-- [x] Project screenshots in public/images/ as .webp
+- [x] Project screenshots in public/images/[project]/ as .webp
   - vesper.webp
   - grandma.webp
   - Additional project images as needed

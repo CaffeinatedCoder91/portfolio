@@ -36,7 +36,7 @@ describe('content/data', () => {
     });
 
     it('Flow project has live and code URLs', () => {
-      const flow = data.projects.find((p) => p.title === 'Flow — AI-Powered Kanban');
+      const flow = data.projects.find((p) => p.title === 'Flow: AI-Powered Kanban');
       expect(flow).toBeDefined();
       expect(flow?.live).toBeDefined();
       expect(flow?.code).toBeDefined();
@@ -67,15 +67,18 @@ describe('content/data', () => {
     });
 
     it('komorebi has note field and no live or code URLs', () => {
-      const komorebi = data.projects.find((p) => p.title === 'Komorebi — Plant & Terrarium Shop');
+      const komorebi = data.projects.find((p) => p.title === 'Komorebi: Plant & Terrarium Shop');
       expect(komorebi).toBeDefined();
+      expect(komorebi?.image).toBe('/images/komorebi/komorebi-listing.webp');
+      expect(komorebi?.images).toHaveLength(5);
+      expect(komorebi?.images?.[0]).toBe('/images/komorebi/komorebi-listing.webp');
       expect(komorebi?.note).toBeDefined();
       expect(komorebi?.live).toBeUndefined();
       expect(komorebi?.code).toBeUndefined();
     });
 
     it('memorial project has live and code URLs', () => {
-      const memorial = data.projects.find((p) => p.title === 'In Loving Memory — Maseline Joseph');
+      const memorial = data.projects.find((p) => p.title === 'In Loving Memory: Maseline Joseph');
       expect(memorial).toBeDefined();
       expect(memorial?.live).toBe('https://maselinejoseph.vercel.app/');
       expect(memorial?.code).toBe('https://github.com/CaffeinatedCoder91/grandma');

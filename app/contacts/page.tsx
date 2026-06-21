@@ -3,7 +3,7 @@ import { Contacts } from '@/components/contacts';
 
 export const metadata: Metadata = {
   title: 'Contact',
-  description: 'Get in touch — email, phone, or connect on LinkedIn and GitHub.',
+  description: 'Get in touch by email, phone, or connect on LinkedIn and GitHub.',
 };
 
 const ContactsPage = () => {

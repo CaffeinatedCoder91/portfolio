@@ -18,6 +18,7 @@ export interface Project {
   tags: string[];
   points: string[];
   image?: string;
+  images?: string[];
   live?: string;
   code?: string;
   note?: string;

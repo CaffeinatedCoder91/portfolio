@@ -172,6 +172,13 @@ export const theme = {
     modalBackdropBlur: '3px',
     modalTitleMaxWidth: '18ch',
     modalImageLabelFont: '0.9rem',
+    modalGalleryControlSize: '40px',
+    modalGalleryControlInset: '0.75rem',
+    modalGalleryCountPadding: '0.25rem 0.55rem',
+    modalGalleryCountBottom: '0.75rem',
+    modalThumbnailSize: '56px',
+    modalThumbnailGap: '0.45rem',
+    modalThumbnailBorder: '2px solid var(--ink)',
   },
   ink: {
     palette: ['#4C2D82', '#34308A', '#5C3CA0', '#3C2882'],
