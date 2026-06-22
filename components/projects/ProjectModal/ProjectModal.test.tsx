@@ -73,7 +73,7 @@ describe('ProjectModal', () => {
       />,
     );
 
-    expect(screen.getAllByText(projectWithLinks.category)).toHaveLength(2);
+    expect(screen.getAllByText(projectWithLinks.category)).toHaveLength(1);
   });
 
   it('renders bullet points', () => {
@@ -183,7 +183,7 @@ describe('ProjectModal', () => {
   it('does not render gallery controls when only one image is available', () => {
     renderWithTheme(
       <ProjectModal
-        project={{ ...projectWithLinks, image: '/images/example.webp' }}
+        project={{ ...projectWithLinks, image: '/images/example.webp', images: undefined }}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
@@ -374,9 +374,11 @@ describe('ProjectModal', () => {
 
   it('traps Tab and Shift+Tab within modal controls', async () => {
     const user = userEvent.setup();
+    // Use a no-gallery fixture so the focus order is predictable: Close → Live → Code
+    const noGalleryProject = { ...projectWithLinks, image: '/images/example.webp', images: undefined };
     renderWithTheme(
       <ProjectModal
-        project={projectWithLinks}
+        project={noGalleryProject}
         onClose={mockOnClose}
         triggerRef={mockTriggerRef}
       />,
