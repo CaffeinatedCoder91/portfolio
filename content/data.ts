@@ -102,7 +102,13 @@ export const projects: Project[] = [
   {
     title: 'Flow: AI-Powered Kanban',
     category: 'AI',
-    image: '',
+    image: '/images/flow/flow.webp',
+    images: [
+      '/images/flow/flow.webp',
+      '/images/flow/flow-ai.webp',
+      '/images/flow/flow-import.webp',
+      '/images/flow/flow-standup.webp',
+    ],
     blurb:
       'Full-stack kanban platform with an AI assistant that reads and mutates your board from plain English.',
     tags: ['Next.js', 'TypeScript', 'Claude API', 'PostgreSQL', 'Docker'],
