@@ -41,60 +41,36 @@ export const facts: Fact[] = [
 
 export const skills: Skill[] = [
   {
-    name: 'Frontend & core',
+    name: 'Frontend',
     color: 'ai',
-    items: [
-      'React',
-      'Next.js',
-      'TypeScript',
-      'JavaScript',
-      'HTML5',
-      'CSS3',
-      'Responsive',
-    ],
+    items: ['React', 'Next.js', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3'],
   },
   {
-    name: 'Architecture & systems',
+    name: 'Styling & Design Systems',
     color: 'fuji',
     items: [
-      'Component libraries',
-      'Strict TS',
-      'Composable APIs',
+      'Styled-components',
+      'Responsive design',
+      'Cross-browser design',
+      'Theming',
       'Storybook',
-      'WCAG 2.1 AA',
+      'Atomic design',
     ],
   },
   {
-    name: 'State & data',
+    name: 'State & Data',
     color: 'mizu',
-    items: [
-      'Context API',
-      'Redux',
-      'React Query',
-      'REST',
-      'OpenAPI',
-      'JWT/OAuth',
-    ],
+    items: ['React Context', 'Redux', 'REST APIs', 'OpenAPI'],
   },
   {
-    name: 'Testing & quality',
+    name: 'Testing & Accessibility',
     color: 'matcha',
-    items: ['Jest', 'RTL', 'Playwright', 'Vitest', 'TDD'],
+    items: ['Jest', 'Vitest', 'React Testing Library', 'Playwright', 'WCAG', 'Semantic HTML', 'ARIA', 'Code reviews'],
   },
   {
-    name: 'Performance',
-    color: 'shu',
-    items: [
-      'Core Web Vitals',
-      'Bundle analysis',
-      'Lazy loading',
-      'Code-splitting',
-    ],
-  },
-  {
-    name: 'DevOps & tooling',
+    name: 'Tooling & Delivery',
     color: 'kincha',
-    items: ['Vercel', 'GitLab CI/CD', 'Webpack', 'Esbuild', 'Sentry', 'Docker'],
+    items: ['Git', 'Vite', 'Webpack', 'Node.js', 'Docker', 'GitLab CI/CD', 'AWS (S3)', 'Sentry', 'Figma', 'Agile/Scrum'],
   },
 ];
 
